@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"git.sgfoot.com/studyALG/demo1/dp/data"
 )
-
+//不考虑库存数量,选则最优优惠券组合
+//时间复杂度: O(n^2)
 func main() {
-	BestTicket(100, 120)
+	BestTicket(100, 820)
+	BestTicket(10, 820)
+	BestTicket(310, 820)
+	BestTicket(310, 2)
+	BestTicket(310, 120)
 }
 //
 func BestTicket(coinTotal, feeTotal int) {
@@ -19,21 +24,11 @@ func BestTicket(coinTotal, feeTotal int) {
 		return tickets[i].Denomination > tickets[j].Denomination
 	})
 	lastTicket := tickets[len(tickets)-1]
-	ShowTicket(tickets)
 	for i:= 0;i < len(tickets); i ++ {
 		for _, ticket := range tickets {
 			//当币小于库存币则退出,或抵扣费用小于券费用
-			if coinTotal < ticket.Cost && feeTotal < ticket.Denomination * 100 {
-				continue
-			}
-			c1 := feeTotal / ticket.Denomination * 100
-			c2 := coinTotal / ticket.Cost
-			cc := c1
-			if c1 > c2 {
-				cc = c2
-			}
-			fmt.Println("cc", cc)
-			if ticket.Cost * cc <= coinTotal && ticket.Denomination * cc * 100 <= feeTotal {
+			cc := feeTotal / (ticket.Denomination * 100)
+			if cc > 0 && ticket.Cost * cc <= coinTotal && ticket.Denomination * cc * 100 <= feeTotal {
 				newTicket = append(newTicket, data.Ticket{
 					Name:         ticket.Name,
 					Denomination: ticket.Denomination,
@@ -46,7 +41,7 @@ func BestTicket(coinTotal, feeTotal int) {
 			}
 		}
 	}
-	if feeTotal > 0 && coinTotal > lastTicket.Cost {
+	if feeTotal > 0 && coinTotal >= lastTicket.Cost {
 		newTicket = append(newTicket, data.Ticket{
 			Name:         lastTicket.Name,
 			Denomination: lastTicket.Denomination,
@@ -56,10 +51,24 @@ func BestTicket(coinTotal, feeTotal int) {
 		feeTotal -= lastTicket.Denomination * 1 * 100
 		coinTotal -= lastTicket.Cost * 1
 	}
-	PrintTicket(newTicket, c, f, coinTotal, feeTotal)
+	bestTicket := make([]data.Ticket, 0)
+	for _, item := range newTicket{
+		flag := false
+		for k, b := range bestTicket {
+			if b.Name == item.Name {
+				bestTicket[k].Number += item.Number
+				flag = true
+			}
+		}
+		if flag == false {
+			bestTicket = append(bestTicket, item)
+		}
+	}
+	PrintTicket(bestTicket, c, f, coinTotal, feeTotal)
 }
 
 func PrintTicket(list []data.Ticket, coin, fee, YuCoin, YuFee int) {
+	fmt.Println("------------------------------------------")
 	fmt.Printf("预抵扣费用:%d, 兑换前币数量:%d, 余费用:%d, 余币数:%d\n", fee, coin, YuFee, YuCoin)
 	coinTotal, feeTotal := 0, 0
 	for _, item := range list {
