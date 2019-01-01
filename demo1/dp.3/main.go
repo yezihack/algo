@@ -169,15 +169,14 @@ func BestTicket(coinTotal, feeTotal int) {
 }
 
 func PrintTicket(list []Ticket, coin, fee, YuCoin, YuFee int) {
-
-	fmt.Printf("预抵扣费用:%d, 兑换前币数量:%d, 余费用:%d, 余币数:%d\n\n", fee, coin, YuFee, YuCoin)
+	fmt.Printf("预抵扣费用:%d(分), 兑换前币数量:%d(个), 余费用:%d(分), 余币数:%d(个)\n\n", fee, coin, YuFee, YuCoin)
 	coinTotal, feeTotal := 0, 0
 	for _, item := range list {
 		coinTotal += item.Cost * item.Number
 		feeTotal += item.Denomination * item.Number * 100
 		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination*100, item.Cost, item.Number)
 	}
-	fmt.Printf("\n实际抵扣费用:%d, 实际消耗币数量:%d\n\n", feeTotal, coinTotal)
+	fmt.Printf("\n实际抵扣费用:%d(分), 实际消耗币数量:%d(个)\n", feeTotal, coinTotal)
 }
 func ShowTicket(list []Ticket) {
 	for _, item := range list {
