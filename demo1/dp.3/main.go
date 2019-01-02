@@ -22,6 +22,8 @@ func main() {
 	BestTicket(800, 1200)
 	BestTicket(0, 1200)
 	BestTicket(10, 1)
+	BestTicket(0, 0)
+	BestTicket(5000, 4990)
 }
 
 //计算最优组合
@@ -129,6 +131,7 @@ func BestTicket(coinTotal, feeTotal int) {
 			})
 			feeTotal -= lastTicket.Denomination * 1 * 100
 			coinTotal -= lastTicket.Cost * 1
+			tickets[len(tickets)-1].Number -= 1
 		}
 	}
 	//进一步优化最优方案
@@ -139,13 +142,16 @@ func BestTicket(coinTotal, feeTotal int) {
 	bestValue := 0 //设置一个最佳总值
 	goodTicket := make([]Ticket, 0)
 	for _, item := range newTicket {
-		if bestValue > oriFee {
-			fmt.Println("多余的数据", item, "value", bestValue)
+		if bestValue > oriFee { //累加结果大于需要抵扣的则跳出
+			//fmt.Println("多余的数据", item, "value", bestValue)
+			//退回币和抵扣
+			coinTotal += item.Cost * item.Number
+			feeTotal += item.Denomination * 100 * item.Number
+		} else {
 			goodTicket = append(goodTicket, item)
 		}
 		bestValue += item.Denomination * 100
 	}
-
 	//合并相同券的数量,时间复杂度:O(n)
 	bestTicket := make([]Ticket, 0)
 	type tmpS struct {
@@ -153,7 +159,7 @@ func BestTicket(coinTotal, feeTotal int) {
 		index  int
 	}
 	ticketMap := make(map[int]tmpS)
-	for _, item := range newTicket {
+	for _, item := range goodTicket {
 		if m, ok := ticketMap[item.Denomination]; ok {
 			bestTicket[m.index].Number = m.number + item.Number
 		} else {
