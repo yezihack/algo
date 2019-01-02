@@ -8,7 +8,7 @@ package main
 import (
 	"sort"
 	"fmt"
-	. "git.sgfoot.com/studyALG/demo1/dp.3/data"
+	. "github.com/yezihack/studyALG/demo1/dp.3/data"
 )
 
 //考虑库存数量,库存不足,不能选则最佳优惠券组合中,必须另选一个
@@ -175,14 +175,14 @@ func BestTicket(coinTotal, feeTotal int) {
 }
 
 func PrintTicket(list []Ticket, coin, fee, YuCoin, YuFee int) {
-	fmt.Printf("预抵扣费用:%d(分), 兑换前币数量:%d(个), 余费用:%d(分), 余币数:%d(个)\n\n", fee, coin, YuFee, YuCoin)
+	fmt.Printf("预抵扣费用:%d(分), 兑换前币数量:%d(个), 余费用:%d(分), 余币数:%d(个)\n", fee, coin, YuFee, YuCoin)
 	coinTotal, feeTotal := 0, 0
 	for _, item := range list {
 		coinTotal += item.Cost * item.Number
 		feeTotal += item.Denomination * item.Number * 100
 		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination*100, item.Cost, item.Number)
 	}
-	fmt.Printf("\n实际抵扣费用:%d(分), 实际消耗币数量:%d(个)\n", feeTotal, coinTotal)
+	fmt.Printf("实际抵扣费用:%d(分), 实际消耗币数量:%d(个)\n\n", feeTotal, coinTotal)
 }
 func ShowTicket(list []Ticket) {
 	for _, item := range list {
