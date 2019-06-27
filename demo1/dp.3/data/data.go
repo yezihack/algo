@@ -13,19 +13,19 @@ func InitTicket() (result []Ticket) {
 		Name:         "优惠券1",
 		Denomination: 1,
 		Cost:         10,
-		Number:       0,
+		Number:       1,
 	})
 	result = append(result, Ticket{
 		Name:         "优惠券2",
 		Denomination: 5,
 		Cost:         50,
-		Number:       50000,
+		Number:       1,
 	})
 	result = append(result, Ticket{
 		Name:         "优惠券3",
 		Denomination: 10,
 		Cost:         100,
-		Number:       50000,
+		Number:       1,
 	})
 	result = append(result, Ticket{
 		Name:         "优惠券4",
@@ -47,4 +47,3 @@ func InitTicket() (result []Ticket) {
 	})
 	return
 }
-

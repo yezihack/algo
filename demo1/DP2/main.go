@@ -15,7 +15,7 @@ func main() {
 	fmt.Println(10 % 8)
 }
 
-func best(box []int, total int)  {
+func best(box []int, total int) {
 	if total <= 0 {
 		return
 	}
@@ -30,7 +30,7 @@ func best(box []int, total int)  {
 		}
 		v1 := total / val
 		v2 := total % val
-		for i := 0;i < v1;i ++ {
+		for i := 0; i < v1; i++ {
 			newBox = append(newBox, val)
 		}
 		if v2 > 0 {
@@ -41,7 +41,7 @@ func best(box []int, total int)  {
 	}
 	//若还剩余则取最小值
 	if total > 0 {
-		newBox = append(newBox, box[len(box) - 1])
+		newBox = append(newBox, box[len(box)-1])
 	}
 	MyPrint(newBox)
 }
@@ -50,7 +50,7 @@ func MyPrint(b []int) {
 	fmt.Println("---------------")
 	total := 0
 	fmt.Println(b)
-	for _, val :=range b{
+	for _, val := range b {
 		total += val
 	}
 	fmt.Println("共兑换:", total)

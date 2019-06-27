@@ -41,4 +41,3 @@ func InitTicket() (result []Ticket) {
 	})
 	return
 }
-

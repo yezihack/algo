@@ -1,10 +1,12 @@
 package main
 
 import (
-	"sort"
 	"fmt"
+	"sort"
+
 	"git.sgfoot.com/studyALG/demo1/dp/data"
 )
+
 //不考虑库存数量,选则最优优惠券组合
 //时间复杂度: O(n^2)
 func main() {
@@ -14,6 +16,7 @@ func main() {
 	BestTicket(310, 2)
 	BestTicket(310, 120)
 }
+
 //
 func BestTicket(coinTotal, feeTotal int) {
 	c, f := coinTotal, feeTotal
@@ -24,11 +27,11 @@ func BestTicket(coinTotal, feeTotal int) {
 		return tickets[i].Denomination > tickets[j].Denomination
 	})
 	lastTicket := tickets[len(tickets)-1]
-	for i:= 0;i < len(tickets); i ++ {
+	for i := 0; i < len(tickets); i++ {
 		for _, ticket := range tickets {
 			//当币小于库存币则退出,或抵扣费用小于券费用
 			cc := feeTotal / (ticket.Denomination * 100)
-			if cc > 0 && ticket.Cost * cc <= coinTotal && ticket.Denomination * cc * 100 <= feeTotal {
+			if cc > 0 && ticket.Cost*cc <= coinTotal && ticket.Denomination*cc*100 <= feeTotal {
 				newTicket = append(newTicket, data.Ticket{
 					Name:         ticket.Name,
 					Denomination: ticket.Denomination,
@@ -52,7 +55,7 @@ func BestTicket(coinTotal, feeTotal int) {
 		coinTotal -= lastTicket.Cost * 1
 	}
 	bestTicket := make([]data.Ticket, 0)
-	for _, item := range newTicket{
+	for _, item := range newTicket {
 		flag := false
 		for k, b := range bestTicket {
 			if b.Name == item.Name {
@@ -74,15 +77,16 @@ func PrintTicket(list []data.Ticket, coin, fee, YuCoin, YuFee int) {
 	for _, item := range list {
 		coinTotal += item.Cost * item.Number
 		feeTotal += item.Denomination * item.Number * 100
-		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination * 100, item.Cost, item.Number)
+		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination*100, item.Cost, item.Number)
 	}
 	fmt.Printf("实际抵扣费用:%d, 实际消耗币数量:%d\n", feeTotal, coinTotal)
 }
 func ShowTicket(list []data.Ticket) {
 	for _, item := range list {
-		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination * 100, item.Cost, item.Number)
+		fmt.Printf("券名称:%s, 券价值:%d 分, 券售价: %d 币, 数量:%d\n", item.Name, item.Denomination*100, item.Cost, item.Number)
 	}
 }
+
 //返回:价值:分, 币个数
 func getTotal(best []data.Ticket) (int, int) {
 	total := 0

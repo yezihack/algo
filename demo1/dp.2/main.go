@@ -50,7 +50,7 @@ func PackBest(coinReq, fee int) {
 			if c > ticket.Number {
 				c = ticket.Number
 			}
-			fmt.Println("倍数: ",c, "number", ticket.Number, k, "last", len(tickets)-1)
+			fmt.Println("倍数: ", c, "number", ticket.Number, k, "last", len(tickets)-1)
 			if c == ticket.Number && k == len(tickets)-1 {
 				fmt.Println("------", k, ticket, "c", c)
 				for iii := k - 1; iii >= 0; iii-- {

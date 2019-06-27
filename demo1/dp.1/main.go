@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sort"
 	"fmt"
+	"sort"
 )
 
 //考虑库存数量,库存不足,不能选则最佳优惠券组合中,必须另选一个
@@ -25,7 +25,7 @@ func BestTicket(coinTotal, feeTotal int) {
 	sort.Slice(tickets, func(i, j int) bool {
 		return tickets[i].Denomination > tickets[j].Denomination
 	})
-	for i := 0; i < len(tickets); i ++ {
+	for i := 0; i < len(tickets); i++ {
 		//只有当库存为0时,将库存小于0的移除掉
 		tickets = resetTicket(tickets)
 		// fmt.Println("key", k)
