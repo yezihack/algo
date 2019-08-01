@@ -65,7 +65,11 @@ func dichotomy2(val int, lst []int) int {
 
 //推荐写法
 func dichotomy3(val int, lst []int) int {
-	start, end, mid := 0, len(lst)-1, 0 //实例为0,
+	//实例三个值, 用于缩小范围,快速查找
+	//start=0 代表下标为0
+	//end=len(lst) -1 代表数组最大下标
+	//mid=初使为0
+	start, end, mid := 0, len(lst)-1, 0
 	if val == lst[start] {
 		return start
 	}
@@ -76,17 +80,16 @@ func dichotomy3(val int, lst []int) int {
 		return -1
 	}
 	for {
-		//mid = int(math.Floor(float64((start + end) / 2)))
-		mid = (start + end) / 2
-		fmt.Printf("start:%d, end:%d, mid:%d, want: %d \n", start, end, mid, val)
-		if val > lst[mid] {
+		mid = (start + end) / 2                                                   //求中间下位值, golang整形除取最小值,相当于math.Floor
+		fmt.Printf("start:%d, end:%d, mid:%d, want: %d \n", start, end, mid, val) //打印
+		if val > lst[mid] {                                                       //如果目标值大于中间值,则将中间mid + 1赋值给start
 			start = mid + 1
-		} else if val < lst[mid] {
+		} else if val < lst[mid] { //如果目标值小于中间值,则将中间mid-1赋值给end
 			end = mid - 1
-		} else {
+		} else { //表示值相等,找到目标下标
 			break
 		}
-		if start > end {
+		if start > end { //如果start大于end则跳出,未找到
 			mid = -1
 			break
 		}
@@ -94,6 +97,7 @@ func dichotomy3(val int, lst []int) int {
 	return mid
 }
 func Find(k int, lst []int) int {
+	sort.Ints(lst)
 	left, right, mid := 1, len(lst), 0
 	if k == lst[left-1] { //是否等于第一个值
 		return left - 1
