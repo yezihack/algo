@@ -1,18 +1,7 @@
-package main
+package fibonacci
 
 import "fmt"
 
-func main() {
-	c := make(chan int)    //定义一个通道,存放数据的
-	quit := make(chan int) //定义一个退出信号
-	go func() {
-		for i := 0; i < 10; i++ {
-			fmt.Println(<-c) //打印结果
-		}
-		quit <- 0 //发送退出信号
-	}()
-	fibonacci(c, quit)
-}
 func fibonacci(c chan<- int, quit <-chan int) {
 	//定义x, y
 	x, y := 0, 1
@@ -25,4 +14,14 @@ func fibonacci(c chan<- int, quit <-chan int) {
 			return
 		}
 	}
+}
+func fibonacci2(want int) int {
+	x, y := 0, 1
+	i := 0
+	for i < want {
+		i++
+		x, y = y, x+y
+		fmt.Printf("i:%d, x:%d \n", i, x)
+	}
+	return x
 }
