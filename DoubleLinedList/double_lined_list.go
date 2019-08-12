@@ -205,6 +205,8 @@ func (list *DoubleList) RemoveTail() *DoubleNode {
 	if node.Prev != nil {
 		list.Tail = node.Prev
 		list.Tail.Next = nil
+	} else {
+		list.Tail, list.Head = nil, nil
 	}
 	list.Size--
 	return node
