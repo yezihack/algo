@@ -278,11 +278,7 @@ func (list *DoubleList) Remove(node *DoubleNode) *DoubleNode {
 }
 ```
 
-
-
-
-
-
+## [查看完整源码](https://github.com/yezihack/math/blob/master/DoubleLinedList/double_lined_list.go)
 
 
 
