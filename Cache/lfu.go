@@ -2,8 +2,8 @@ package Cache
 
 import (
 	"fmt"
-	"github.com/chanxuehong/util/math"
 	"github.com/yezihack/math/DoubleLinedList"
+	"math"
 )
 
 /* LFU(least frequently used) 最不常用使用淘汰算法 */
@@ -49,7 +49,7 @@ func (f *LFUCache) updateFreq(node *DoubleLinedList.DoubleNode) {
 	node.Freq = freq
 	//新的频率了, 需要判断是否在缓存中
 	if _, ok := f.cacheFreq[freq]; !ok { //不存在缓存中, 则创建新的.
-		f.cacheFreq[freq] = DoubleLinedList.New(math.MaxUint)
+		f.cacheFreq[freq] = DoubleLinedList.New(math.MaxInt32)
 	}
 	f.cacheFreq[freq].Append(node)
 }

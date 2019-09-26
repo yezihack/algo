@@ -4,7 +4,7 @@ import (
 	"github.com/yezihack/math/DoubleLinedList"
 )
 
-/* LRU(least recently used) 最少最近使用淘汰算法 */
+/* LRU(least recently used) 最近最少使用淘汰算法 */
 /*
 	实现思路:
 	1.使用到的数据, 放头部
