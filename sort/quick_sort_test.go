@@ -39,6 +39,10 @@ func TestQuickSort(t *testing.T) {
 	arr := []int{9, 2, 3, 21, 0, 1, 4}
 	fmt.Println(quickSort(arr))
 }
+func TestQuickSort2(t *testing.T) {
+	arr := []int{8, 2, 4}
+	fmt.Println(quickSort(arr))
+}
 
 func QuickSortCommon(arr []int) []int {
 	if len(arr) < 2 {

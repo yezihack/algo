@@ -60,3 +60,42 @@ func TestBinarySearch(t *testing.T) {
 		})
 	}
 }
+
+func BinarySearchBest(list []int, target int) int {
+	min := 0
+	max := len(list) - 1
+	for min <= max {
+		//防止溢出
+		//mid := min + (max-min)/2
+		mid := min + ((max - min) >> 1)
+		if target > list[mid] {
+			min = mid + 1
+		} else if target < list[mid] {
+			max = mid - 1
+		} else if target == list[mid] {
+			return mid
+		} else {
+			return -1
+		}
+	}
+	return -1
+}
+func TestBinarySearchBest(t *testing.T) {
+	list := []int{1, 3, 4, 8, 9, 12}
+	if val := BinarySearchBest(list, 8); val != 3 {
+		t.Error("ErrValue", val)
+	}
+	if val := BinarySearchBest(list, 1); val != 0 {
+		t.Error("ErrValue", val)
+	}
+	if val := BinarySearchBest(list, 12); val != 5 {
+		t.Error("ErrValue", val)
+	}
+	if val := BinarySearchBest(list, 9); val != 4 {
+		t.Error("ErrValue", val)
+	}
+	if val := BinarySearchBest(list, 82); val != -1 {
+		t.Error("ErrValue", val)
+	}
+
+}
