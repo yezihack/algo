@@ -1,0 +1,51 @@
+{
+  "systemParameter": {
+    "serviceCode": "StoreDeliverGoods"
+  },
+  "orderInfo": {
+    "bagSize": "20,10,30",
+    "partnerCode": "3608036589234",
+    "companyCode": "GP1551922487",
+    "customerId": "zto001",
+    "hallCode": "S2044",
+    "billCode": null,
+    "pickUpCode": null,
+    "startTime": null,
+    "endTime": null,
+    "siteCode": "",
+    "weight": 1.23,
+    "freight": 0,
+    "orderSum": 230.12,
+    "otherCharges": 0,
+    "packCharges": 0,
+    "premium": 0,
+    "price": 0,
+    "quantity": "1",
+    "returnAddress": "江苏省苏州市姑苏区绿地大道320号金茂大厦负一楼203仓库",
+    "remark": "",
+    "receiver": {
+      "address": "外街道00号",
+      "city": "苏州市",
+      "company": "中通快递",
+      "county": "朝阳区",
+      "id": "",
+      "mobile": "13262709999",
+      "name": "黄某",
+      "phone": "",
+      "prov": "江苏省",
+      "zipCode": ""
+    },
+    "sender": {
+      "address": "华志路1685号",
+      "city": "蚌埠市",
+      "company": "中通快递股份有限公司",
+      "county": "怀远县",
+      "id": "15097756",
+      "mobile": "15216800000",
+      "name": "测试",
+      "phone": "",
+      "prov": "安徽省",
+      "zipCode": ""
+    }
+  }
+}

@@ -29,3 +29,29 @@ func TestSelectSort(t *testing.T) {
 	newArr := selectSort(arr)
 	fmt.Println(newArr)
 }
+func TestQsort(t *testing.T) {
+	list := []int{5, 3, 4, 2, 1}
+	QSort(list, 0, len(list)-1)
+	if list[0] != 1 || list[1] != 2 || list[2] != 3 || list[3] != 4 || list[4] != 5 {
+		t.Error("排序失败", list)
+	}
+	fmt.Println(list)
+	list = []int{2, 3, 5, 4, 1}
+	QSort(list, 0, len(list)-1)
+	if list[0] != 1 || list[1] != 2 || list[2] != 3 || list[3] != 4 || list[4] != 5 {
+		t.Error("排序失败", list)
+	}
+	fmt.Println(list)
+	list = []int{5, 4}
+	QSort(list, 0, len(list)-1)
+	if list[0] != 4 || list[1] != 5 {
+		t.Errorf("sort fail. list:%v", list)
+	}
+	fmt.Println(list)
+	list = []int{5, 9, 2, 3, 1}
+	QSort(list, 0, len(list)-1)
+	if list[0] != 1 || list[1] != 2 || list[4] != 9 {
+		t.Errorf("sort fail. list:%v", list)
+	}
+	fmt.Println(list)
+}
