@@ -1,4 +1,4 @@
-@echo on
+@echo off
 set input=%1%
 if %input% == "" (
     echo "input summary"

@@ -45,7 +45,7 @@ func (s *Stack) Push(v int) {
 		return
 	}
 	s.Top++
-	s.Data[s.Top] = v
+	s.Data[s.Top] = v	
 }
 
 //打印
@@ -68,3 +68,4 @@ func main() {
 	s.Push(10)
 	s.Print()
 }
+func
