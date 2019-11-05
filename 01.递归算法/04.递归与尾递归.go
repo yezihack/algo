@@ -19,18 +19,18 @@ import (
 )
 
 //非尾递归
-func fab(n int) int {
+func fact(n int) int {
 	if n < 0 {
 		return 0
 	}
 	if n == 1 || n == 0 {
 		return 1
 	}
-	return n * fab(n-1) //n变量会创建一个栈帧保存起来,直到返回栈时才会释放,这样消费很多空间存储
+	return n * fact(n-1) //n变量会创建一个栈帧保存起来,直到返回栈时才会释放,这样消费很多空间存储
 }
 
-//尾递归
-func fabTail(n, result int) int {
+//尾递归,编译器对其做了优化,效率可以与循环相媲美
+func factTail(n, result int) int {
 	if n < 0 {
 		return 0
 	}
@@ -40,7 +40,7 @@ func fabTail(n, result int) int {
 	if n == 1 {
 		return result
 	}
-	return fabTail(n-1, n*result) //这是没有使用变量存储,也就不会创建变量栈帧,而且将结果当参数覆盖每一次计算,最后返回结果
+	return factTail(n-1, n*result) //这是没有使用变量存储,也就不会创建变量栈帧,而且将结果当参数覆盖每一次计算,最后返回结果
 }
 func main() {
 	n := 35
@@ -49,13 +49,13 @@ func main() {
 	go func() {
 		s := time.Now()
 		defer fmt.Println("递归耗时:", time.Since(s))
-		fmt.Println(fab(n))
+		fmt.Println(fact(n))
 		wg.Done()
 	}()
 	go func() {
 		s := time.Now()
 		defer fmt.Println("尾递归耗时:", time.Since(s))
-		fmt.Println(fabTail(n, 1))
+		fmt.Println(factTail(n, 1))
 		wg.Done()
 	}()
 	wg.Wait()
