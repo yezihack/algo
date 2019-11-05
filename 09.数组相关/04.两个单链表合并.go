@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	. "github.com/yezihack/math/09.数组相关/src"
-	"runtime/debug"
+	. "github.com/yezihack/algo/09.数组相关/src"
 )
 
 func main() {
@@ -20,10 +19,79 @@ func main() {
 	s2.Append(NewSingleNode(10))
 	s2.Print()
 
-	node := MergeLinked2(s1.Head, s2.Head)
+	node := MergeLinkedByFor(s1.Head, s2.Head)
 	Print("result", node)
 
 }
+func MergeLinkedByFor(n1, n2 *SingleNode) *SingleNode {
+	p1, p2 := n1, n2              //创建二个指针
+	var pp, pp2, next *SingleNode //创建一个起启指针PP, 再创建一个移动的指针 PP2, 再创建一个NEXT指针指向最小值的链上
+	for p1 != nil && p2 != nil {
+		if p1.Data <= p2.Data {
+			next = p1.Next
+			if pp == nil {
+				pp = p1
+			} else {
+				pp2.Next = p1
+			}
+			p1.Next = nil
+			pp2 = p1
+			p1 = next
+		} else {
+			next = p2.Next
+			if pp == nil {
+				pp = p2
+			} else {
+				pp2.Next = p2
+			}
+			p2.Next = nil
+			pp2 = p2
+			p2 = next
+		}
+	}
+	return pp
+}
+
+//for实现链表合并
+//参考: https://blog.csdn.net/meng_lemon/article/details/82080454
+func MergeLinked(n1, n2 *SingleNode) *SingleNode {
+	p1, p2 := n1, n2
+	var pp, next, tail *SingleNode
+	for p1 != nil && p2 != nil {
+		if p1.Data < p2.Data {
+			next = p1.Next
+			if pp == nil {
+				pp = p1
+			} else {
+				tail.Next = p1
+			}
+			p1.Next = nil
+			tail = p1
+			p1 = next
+		} else {
+			next = p2.Next
+			if pp == nil {
+				pp = p2
+			} else {
+				tail.Next = p2
+			}
+			p2.Next = nil
+			tail = p2
+			p2 = next
+		}
+	}
+	Print("p1", p1)
+	Print("p1", p2)
+	if p1 != nil {
+		tail.Next = p1
+	}
+	if p2 != nil {
+		tail.Next = p2
+	}
+	return pp
+}
+
+//递归实现链表合并
 func MergeLinked2(n1, n2 *SingleNode) *SingleNode {
 	if n1 == nil {
 		return n2
@@ -40,23 +108,7 @@ func MergeLinked2(n1, n2 *SingleNode) *SingleNode {
 	}
 }
 
-func mergeTwoLists(l1 *SingleNode, l2 *SingleNode) *SingleNode {
-	fmt.Printf("%s", debug.Stack())
-	if l1 == nil {
-		return l2
-	}
-	if l2 == nil {
-		return l1
-	}
-	if l1.Data <= l2.Data {
-		l1.Next = mergeTwoLists(l1.Next, l2)
-		return l1
-	} else {
-		l2.Next = mergeTwoLists(l1, l2.Next)
-		return l2
-	}
-}
-
+//递归实现链表合并
 func LinkMerge(n1, n2 *SingleNode) *SingleNode {
 	if n1 == nil {
 		return n2
