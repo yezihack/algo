@@ -11,3 +11,10 @@ typedef struct Chunk{
     struct Chunk *next;
 }Chunk
 ```
+
+## BF算法
+1. 字符串比较,使用两个指针逐一比较,不匹配则回溯
+1. 时间复杂度: O(m*n
+
+## KMP算法
+> KMP由三位科学家提出 .D.E.Knuth, J.H.Morris AND V.R.Pratt
