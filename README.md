@@ -20,6 +20,9 @@
 1. [LRU最少最近算法实现](Cache/README.md) 双链表实现
 1. [LFU最不常用算法实现](Cache/README.md) 双链表实现
 
+## 树
+1. [二叉树](tree/binary_tree.go)
+
 
 ## 各种算法已代码实现
 1. 极客时间算法: https://github.com/wangzheng0822/algo

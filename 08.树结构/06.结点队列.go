@@ -22,9 +22,7 @@ func (q *QueueRaverse) Push(data *BiNode) {
 	}
 
 }
-func (q *QueueRaverse) Pop() (data *BiNode) {
 
-}
 func (q *QueueRaverse) QueueEmpty() bool {
 	if q.len == 0 {
 		return true

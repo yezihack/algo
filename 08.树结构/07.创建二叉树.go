@@ -16,24 +16,20 @@ func NewTreeNode(data string) *TreeNode {
 }
 
 //遍历二叉树,三种遍历法, 先序,中序,后序
-func TraverseTree(id int, root *TreeNode) {
+func TraverseTree(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	switch id {
-	case 1: //先序遍历
-		print(root.data, ",")
-		TraverseTree(id, root.left)
-		TraverseTree(id, root.right)
-	case 2: //中序遍历
-		print(root.data, ",")
-		TraverseTree(id, root.left)
-		TraverseTree(id, root.right)
-	case 3: //后序遍历
-		print(root.data, ",")
-		TraverseTree(id, root.left)
-		TraverseTree(id, root.right)
+	print(root.data)
+	if root.left == nil {
+		print("#")
 	}
+	TraverseTree(root.left)
+	if root.right == nil {
+		print("#")
+	}
+	TraverseTree(root.right)
+
 }
 
 var i = -1
@@ -54,14 +50,20 @@ func CreateBiTree(arr []string) *TreeNode {
 	}
 	return node
 }
+
 func main() {
-	var treeIds = []string{"A", "B", "#", "#", "C", "#", "D"}
+	var treeIds = []string{"A", "B", "#", "#", "C", "D", "#", "#", "#"}
 	t := CreateBiTree(treeIds)
-	TraverseTree(1, t)
+	TraverseTree(t)
 	fmt.Println()
-	fmt.Println(t.data)
-	fmt.Println(t.left.data)
 	fmt.Println(t.right.data)
-	fmt.Println(t.right.right.data)
+	fmt.Println(t.right.left.data)
+	if t.right.right == nil {
+		fmt.Println("nul")
+	}
+	//fmt.Println(t.data)
+	//fmt.Println(t.left.data)
+	//fmt.Println(t.right.data)
+	//fmt.Println(t.right.right.data)
 
 }
