@@ -1,8 +1,7 @@
-package main
+package queue
 
 import "fmt"
 
-//https://www.bilibili.com/video/av33876282
 //循环队列使用线性表表示与实现
 //如何解决队空还是队满有三种办法
 //1.使用一个变量记录入栈时就加1, 出栈时就减1
@@ -94,3 +93,5 @@ func main() {
 	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
 	fmt.Println(c.QueueFull(), c.QueueEmpty())
 }
+
+//参考视频https://www.bilibili.com/video/av33876282
