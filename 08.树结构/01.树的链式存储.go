@@ -9,6 +9,12 @@ type BiNode struct {
 	rChild *BiNode     //右孩子结点
 }
 
+func NewBiNode(data ElementType) *BiNode {
+	return &BiNode{
+		data: data,
+	}
+}
+
 //三叉链表的结点定义
 type TriTNode struct {
 	data   ElementType //存储数据
