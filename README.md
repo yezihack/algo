@@ -21,7 +21,7 @@
 1. [LFU最不常用算法实现](Cache/README.md) 双链表实现
 
 ## 树
-1. [二叉树](tree/binary_tree.go)
+1. [二叉树基本操作](tree/README.md)
 
 
 ## 各种算法已代码实现
