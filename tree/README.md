@@ -133,7 +133,7 @@ func (h *HuffmanTree) CreateTree() {
 	}
 }
 ``` 
-1. 找到两个最小的权重代码
+2. 找到两个最小的权重代码
 > 1个循环实现
 ```
 //找到两个最小的结点
@@ -159,7 +159,7 @@ func (h *HuffmanTree) Find2MinNode(maxIndex int) (s1 *HuffmanNode, s2 *HuffmanNo
 	return
 }
 ```
-1. 哈夫曼编码与解码
+3. 哈夫曼编码与解码
 ```
 //编码
 func (h *HuffmanTree) Encode(str string) string {
