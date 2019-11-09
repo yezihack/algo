@@ -110,6 +110,7 @@ func (t *BiTreeNode) LeadCount(tree *BiTreeNode) int {
 ```
 
 ### [哈夫曼树实现](huffman_tree.go)
+> 哈夫曼是无损的编码与解码.属于前缀编码及最优产缀编码.
 > see:https://www.bilibili.com/video/av35817749
 1. 核心代码,创建哈夫曼树,两两合并
 ```
