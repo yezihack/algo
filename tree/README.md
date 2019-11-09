@@ -146,4 +146,33 @@ func (h *HuffmanTree) Find2MinNode(maxIndex int) (s1 *HuffmanNode, s2 *HuffmanNo
 	return
 }
 ```
+1. 哈夫曼编码与解码
+```
+//编码
+func (h *HuffmanTree) Encode(str string) string {
+	var b strings.Builder
+	for i := 0; i < len(str); i++ {
+		s := byte(str[i])
+		if code, ok := h.char2CodeMap[s]; ok {
+			b.WriteString(code)
+		}
+	}
+	return b.String()
+}
 
+//解码
+func (h *HuffmanTree) Decode(codes string) string {
+	var b strings.Builder
+	i, j := 0, 1
+	for j <= len(codes) {
+		c := codes[i:j]
+		if char, ok := h.code2CharMap[c]; ok {
+			b.WriteByte(char)
+			i = j
+		} else {
+			j++
+		}
+	}
+	return b.String()
+}
+```
