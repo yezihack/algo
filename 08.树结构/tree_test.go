@@ -45,3 +45,16 @@ func TestBNode_Copy(t *testing.T) {
 	}
 
 }
+
+//哈夫曼树单元测试
+func TestNewHuffmanTree(t *testing.T) {
+	w := []int{5, 29, 7, 8, 14, 23, 3, 11}
+	hf := NewHuffmanTree(w)
+	hf.CreateTree()
+	for _, item := range hf.nodes {
+		fmt.Printf("ID:%d,weight:%d,parent:%d,lChild:%d, rChild:%d\n",
+			item.ID, item.weight, item.parent, item.lChildIndex, item.rChildIndex)
+	}
+	//s1, s2 := hf.Select2MinNode(3)
+	//fmt.Println(s1, s2)
+}
