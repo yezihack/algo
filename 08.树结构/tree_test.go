@@ -70,9 +70,25 @@ func TestNewHuffmanTreeCode(t *testing.T) {
 	}
 	//print huffman code
 	chars := []byte("ABCDEFG")
-	codes := hf.CreateCode(chars)
+	codes := hf.CreateCode(chars).codeMap
 	fmt.Println(codes)
 }
+
+//编码操作
+func TestHuffmanTree_Encode(t *testing.T) {
+	chars := []byte("ILOVEYU")
+	w := []int{1, 2, 3, 4, 5, 6, 7}
+	hf := NewHuffmanTree(w)
+	str := "ILOVEYOU"
+	hf.CreateTree().CreateCode(chars)
+	s := hf.Encode(str)
+	fmt.Println(s)
+	//解码
+	s = "011001110101101110001010"
+	result := hf.Decode(s)
+	fmt.Println(result)
+}
+
 func TestHuffmanTree_CodeTraverse(t *testing.T) {
 	str := "abcdef"
 	h := new(HuffmanTree)

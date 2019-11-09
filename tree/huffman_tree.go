@@ -1,6 +1,8 @@
 package tree
 
-import "fmt"
+import (
+	"strings"
+)
 
 //什么是哈夫曼树,
 //给定N个权值作为N个叶子结点，构造一棵二叉树，若该树的带权路径长度达到最小，
@@ -20,9 +22,11 @@ type HuffmanNode struct {
 
 //定义哈夫曼树
 type HuffmanTree struct {
-	nodes        []*HuffmanNode //存储所有结点
-	nodesNumber  int            //构造后的结点数
-	weightLength int            //存储权重值
+	nodes        []*HuffmanNode  //存储所有结点
+	nodesNumber  int             //构造后的结点数
+	weightLength int             //存储权重值
+	code2CharMap map[string]byte //编码=>字符
+	char2CodeMap map[byte]string //字符=>编码
 }
 
 //初始哈夫曼结构
@@ -49,7 +53,7 @@ func NewHuffmanTree(weight []int) *HuffmanTree {
 }
 
 //已经初始化了, 然后需要两两合并,只到剩余一个根结点
-func (h *HuffmanTree) CreateTree() {
+func (h *HuffmanTree) CreateTree() *HuffmanTree {
 	for i := h.weightLength; i < h.nodesNumber; i++ {
 		//创建一个新结点
 		newNode := new(HuffmanNode)
@@ -57,8 +61,8 @@ func (h *HuffmanTree) CreateTree() {
 		newNode.ID = i
 		//找到最小的二个结点数.
 		s1, s2 := h.Find2MinNode(i)
-		fmt.Printf("minNode:s1-ID:%d,s1-weight:%d, s2-ID:%d,s2-weight:%d\n",
-			s1.ID, s1.weight, s2.ID, s2.weight)
+		//fmt.Printf("minNode:s1-ID:%d,s1-weight:%d, s2-ID:%d,s2-weight:%d\n",
+		//	s1.ID, s1.weight, s2.ID, s2.weight)
 		newNode.weight = s1.weight + s2.weight //新结点的权重就是两个孩子权重之和
 		newNode.lChild = s1.ID                 //新结点的左孩子
 		newNode.rChild = s2.ID                 //新结点的右孩子
@@ -66,12 +70,13 @@ func (h *HuffmanTree) CreateTree() {
 		s2.parent = newNode.ID                 //设置右孩子的双亲ID
 		h.nodes[i] = newNode                   //将新结点加入切片中
 	}
+	return h
 }
 
 //生成哈夫曼对应的编码
 //思路:从根结点开始找,左孩子则输出0, 右孩子则输出1,然后反转字符串得到huffman编码
-func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
-	codes := make(map[string]string)
+func (h *HuffmanTree) CreateCode(chars []byte) *HuffmanTree {
+	codes := make(map[byte]string)
 	//只循环叶子结点数的次数
 	for i := 0; i < h.weightLength; i++ {
 		parent := h.nodes[i].parent //找到当前叶子结点的parent
@@ -87,10 +92,40 @@ func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
 			parent = prevNode.parent //继续找双亲结点
 			currID = prevNode.ID     //重置当前的双亲结点ID
 		}
-		codes[string(chars[i])] = h.StrTraverser(code) //将得到的huffman code反转过来
+		codes[chars[i]] = h.StrTraverser(code) //将得到的huffman code反转过来
 		//我们是从叶子结点开始找的,我们正常编码是从根开始数的,所以需要反转一下
 	}
-	return codes
+	h.char2CodeMap = codes
+	h.code2CharMap = h.MapTraverse(codes)
+	return h
+}
+
+//编码
+func (h *HuffmanTree) Encode(str string) string {
+	var b strings.Builder
+	for i := 0; i < len(str); i++ {
+		s := byte(str[i])
+		if code, ok := h.char2CodeMap[s]; ok {
+			b.WriteString(code)
+		}
+	}
+	return b.String()
+}
+
+//解码
+func (h *HuffmanTree) Decode(codes string) string {
+	var b strings.Builder
+	i, j := 0, 1
+	for j <= len(codes) {
+		c := codes[i:j]
+		if char, ok := h.code2CharMap[c]; ok {
+			b.WriteByte(char)
+			i = j
+		} else {
+			j++
+		}
+	}
+	return b.String()
 }
 
 //字符串反转操作
@@ -101,6 +136,15 @@ func (h *HuffmanTree) StrTraverser(str string) string {
 		b[i], b[l-i-1] = b[l-i-1], b[i]
 	}
 	return string(b)
+}
+
+//map转换
+func (h *HuffmanTree) MapTraverse(m map[byte]string) map[string]byte {
+	codeMap := make(map[string]byte)
+	for char, code := range m {
+		codeMap[code] = char
+	}
+	return codeMap
 }
 
 //找到两个最小的结点

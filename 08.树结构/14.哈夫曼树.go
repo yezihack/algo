@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"strings"
+)
 
 //什么是哈夫曼树,
 //给定N个权值作为N个叶子结点，构造一棵二叉树，若该树的带权路径长度达到最小，
@@ -20,10 +22,12 @@ type HuffmanNode struct {
 
 //定义哈夫曼树
 type HuffmanTree struct {
-	nodes        []*HuffmanNode //存储所有结点
-	nodesNumber  int            //构造后的结点数
-	weightLength int            //存储权重值
-	weightList   []int          //权重list
+	nodes        []*HuffmanNode  //存储所有结点
+	nodesNumber  int             //构造后的结点数
+	weightLength int             //存储权重值
+	weightList   []int           //权重list
+	codeMap      map[byte]string //编码对应的map,如 a=>10
+	charMap      map[string]byte //存储编码对应字符的map,如 10=>a
 }
 
 //初始哈夫曼结构
@@ -50,7 +54,7 @@ func NewHuffmanTree(weight []int) *HuffmanTree {
 }
 
 //已经初始化了, 然后需要两两合并,只到剩余一个根结点
-func (h *HuffmanTree) CreateTree() {
+func (h *HuffmanTree) CreateTree() *HuffmanTree {
 	for i := h.weightLength; i < h.nodesNumber; i++ {
 		//创建一个新结点
 		newNode := new(HuffmanNode)
@@ -58,8 +62,8 @@ func (h *HuffmanTree) CreateTree() {
 		newNode.ID = i
 		//找到最小的二个结点数.
 		s1, s2 := h.Select2MinNode(i)
-		fmt.Printf("minNode:s1-ID:%d,s1-weight:%d, s2-ID:%d,s2-weight:%d\n",
-			s1.ID, s1.weight, s2.ID, s2.weight)
+		//fmt.Printf("minNode:s1-ID:%d,s1-weight:%d, s2-ID:%d,s2-weight:%d\n",
+		//	s1.ID, s1.weight, s2.ID, s2.weight)
 		//判断是否为空
 		if s1 != nil {
 			s1.parent = newNode.ID      //二个最小结点数中的其中一个结点,设置新结点ID
@@ -73,11 +77,13 @@ func (h *HuffmanTree) CreateTree() {
 		}
 		h.nodes[i] = newNode //将新结点加入切片中
 	}
+	return h
 }
 
 //转换成哈夫曼编码
-func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
-	codeList := make(map[string]string)
+//see:https://www.bilibili.com/video/av35817244
+func (h *HuffmanTree) CreateCode(chars []byte) *HuffmanTree {
+	codeList := make(map[byte]string)
 	for i := 0; i < h.weightLength; i++ {
 		node := h.nodes[i]    //从叶子结点开始找
 		parent := node.parent //找到叶子结点的parentID
@@ -92,11 +98,40 @@ func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
 			}
 			currID = prevNode.ID
 			parent = prevNode.parent
-			fmt.Printf("nodeID:%d parent:%d\n", node.ID, parent)
+			//fmt.Printf("nodeID:%d parent:%d\n", node.ID, parent)
 		}
-		codeList[string(chars[i])] = h.StrTraverse(code)
+		codeList[chars[i]] = h.StrTraverse(code)
 	}
-	return codeList
+	h.codeMap = codeList
+	h.charMap = h.MapTraverse(codeList)
+	return h
+}
+
+//对字符串进行编码,输出0101
+func (h *HuffmanTree) Encode(str string) string {
+	b := []byte(str)
+	var result strings.Builder
+	for i := 0; i < len(b); i++ {
+		result.WriteString(h.codeMap[b[i]])
+	}
+	return result.String()
+}
+
+//解码
+//利用双指针实现, 找到则将i = j,没找到则移动j指针.
+func (h *HuffmanTree) Decode(str string) string {
+	i, j := 0, 1
+	result := ""
+	for j <= len(str) {
+		c := str[i:j]
+		if char, ok := h.charMap[c]; ok {
+			i = j
+			result += string(char)
+		} else {
+			j++
+		}
+	}
+	return result
 }
 
 //反转字符串
@@ -130,4 +165,13 @@ func (h *HuffmanTree) Select2MinNode(maxIndex int) (s1 *HuffmanNode, s2 *Huffman
 		}
 	}
 	return
+}
+
+//映射一个编码对应字符的map
+func (h *HuffmanTree) MapTraverse(m map[byte]string) map[string]byte {
+	charMap := make(map[string]byte)
+	for char, code := range m {
+		charMap[code] = char
+	}
+	return charMap
 }
