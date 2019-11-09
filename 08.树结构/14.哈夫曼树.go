@@ -23,6 +23,7 @@ type HuffmanTree struct {
 	nodes        []*HuffmanNode //存储所有结点
 	nodesNumber  int            //构造后的结点数
 	weightLength int            //存储权重值
+	weightList   []int          //权重list
 }
 
 //初始哈夫曼结构
@@ -35,8 +36,10 @@ func NewHuffmanTree(weight []int) *HuffmanTree {
 		//huffman := new(HuffmanNode)
 		//huffman.weight = weight[i]
 		nodes[i] = &HuffmanNode{
-			ID:     i,
-			weight: weight[i],
+			ID:          i,
+			weight:      weight[i],
+			lChildIndex: -1,
+			rChildIndex: -1,
 		}
 	}
 	return &HuffmanTree{
@@ -72,7 +75,42 @@ func (h *HuffmanTree) CreateTree() {
 	}
 }
 
+//转换成哈夫曼编码
+func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
+	codeList := make(map[string]string)
+	for i := 0; i < h.weightLength; i++ {
+		node := h.nodes[i]    //从叶子结点开始找
+		parent := node.parent //找到叶子结点的parentID
+		currID := i
+		code := ""
+		for parent != 0 {
+			prevNode := h.nodes[parent]
+			if prevNode.lChildIndex == currID {
+				code += "0"
+			} else if prevNode.rChildIndex == currID {
+				code += "1"
+			}
+			currID = prevNode.ID
+			parent = prevNode.parent
+			fmt.Printf("nodeID:%d parent:%d\n", node.ID, parent)
+		}
+		codeList[string(chars[i])] = h.StrTraverse(code)
+	}
+	return codeList
+}
+
+//反转字符串
+func (h *HuffmanTree) StrTraverse(code string) string {
+	codeByte := []byte(code)
+	l := len(codeByte)
+	for i := 0; i < l/2; i++ {
+		codeByte[i], codeByte[l-i-1] = codeByte[l-i-1], codeByte[i]
+	}
+	return string(codeByte)
+}
+
 //找到两个最小的结点
+//此处的算法不一致,会导致生成不同的码
 //maxIndex:从0到最manIndex中间找最小值
 func (h *HuffmanTree) Select2MinNode(maxIndex int) (s1 *HuffmanNode, s2 *HuffmanNode) {
 	//先找一个s1的最小值

@@ -58,3 +58,24 @@ func TestNewHuffmanTree(t *testing.T) {
 	//s1, s2 := hf.Select2MinNode(3)
 	//fmt.Println(s1, s2)
 }
+
+//哈夫曼树单元测试
+func TestNewHuffmanTreeCode(t *testing.T) {
+	w := []int{40, 30, 15, 5, 4, 3, 3}
+	hf := NewHuffmanTree(w)
+	hf.CreateTree()
+	for _, item := range hf.nodes {
+		fmt.Printf("ID:%d,weight:%d,parent:%d,lChild:%d, rChild:%d\n",
+			item.ID, item.weight, item.parent, item.lChildIndex, item.rChildIndex)
+	}
+	//print huffman code
+	chars := []byte("ABCDEFG")
+	codes := hf.CreateCode(chars)
+	fmt.Println(codes)
+}
+func TestHuffmanTree_CodeTraverse(t *testing.T) {
+	str := "abcdef"
+	h := new(HuffmanTree)
+	s := h.StrTraverse(str)
+	fmt.Println(s)
+}

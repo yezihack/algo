@@ -11,11 +11,11 @@ import "fmt"
 
 //定义哈夫曼结点结构
 type HuffmanNode struct {
-	ID     int          //位置
-	weight int          //权重
-	parent int          //双亲ID位置
-	lChild *HuffmanNode //左孩子结点位置
-	rChild *HuffmanNode //右孩子结点位置
+	ID     int //位置
+	weight int //权重
+	parent int //双亲ID位置
+	lChild int //左孩子结点位置
+	rChild int //右孩子结点位置
 }
 
 //定义哈夫曼树
@@ -37,6 +37,8 @@ func NewHuffmanTree(weight []int) *HuffmanTree {
 		nodes[i] = &HuffmanNode{
 			ID:     i,
 			weight: weight[i],
+			lChild: -1,
+			rChild: -1,
 		}
 	}
 	return &HuffmanTree{
@@ -58,12 +60,47 @@ func (h *HuffmanTree) CreateTree() {
 		fmt.Printf("minNode:s1-ID:%d,s1-weight:%d, s2-ID:%d,s2-weight:%d\n",
 			s1.ID, s1.weight, s2.ID, s2.weight)
 		newNode.weight = s1.weight + s2.weight //新结点的权重就是两个孩子权重之和
-		newNode.lChild = s1                    //新结点的左孩子
-		newNode.rChild = s2                    //新结点的右孩子
+		newNode.lChild = s1.ID                 //新结点的左孩子
+		newNode.rChild = s2.ID                 //新结点的右孩子
 		s1.parent = newNode.ID                 //设置左孩子的双亲ID
 		s2.parent = newNode.ID                 //设置右孩子的双亲ID
 		h.nodes[i] = newNode                   //将新结点加入切片中
 	}
+}
+
+//生成哈夫曼对应的编码
+//思路:从根结点开始找,左孩子则输出0, 右孩子则输出1,然后反转字符串得到huffman编码
+func (h *HuffmanTree) CreateCode(chars []byte) map[string]string {
+	codes := make(map[string]string)
+	//只循环叶子结点数的次数
+	for i := 0; i < h.weightLength; i++ {
+		parent := h.nodes[i].parent //找到当前叶子结点的parent
+		currID := i                 //记录一下当前ID
+		code := ""                  //存储huffman code
+		for parent != 0 {           //循环直到找到parent == 0即是根结点
+			prevNode := h.nodes[parent]    //找到上一个结点
+			if prevNode.lChild == currID { //判断是否是左孩子,是则标记为0
+				code += "0"
+			} else if prevNode.rChild == currID { //判断是否是右孩子,是则标记为1
+				code += "1"
+			}
+			parent = prevNode.parent //继续找双亲结点
+			currID = prevNode.ID     //重置当前的双亲结点ID
+		}
+		codes[string(chars[i])] = h.StrTraverser(code) //将得到的huffman code反转过来
+		//我们是从叶子结点开始找的,我们正常编码是从根开始数的,所以需要反转一下
+	}
+	return codes
+}
+
+//字符串反转操作
+func (h *HuffmanTree) StrTraverser(str string) string {
+	l := len(str)
+	b := []byte(str)
+	for i := 0; i < l/2; i++ {
+		b[i], b[l-i-1] = b[l-i-1], b[i]
+	}
+	return string(b)
 }
 
 //找到两个最小的结点
