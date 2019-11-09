@@ -1,6 +1,6 @@
 ## 树结构
 
-### 实现二叉树的基本操作
+### [实现二叉树的基本操作](binary_tree.go)
 > 参考: https://www.bilibili.com/video/av35340048
 1. 创建一棵树 CreateTree
 ```
@@ -96,7 +96,7 @@ func (t *BiTreeNode) LeadCount(tree *BiTreeNode) int {
 }
 ```
 
-### 哈夫曼树实现
+### [哈夫曼树实现](huffman_tree.go)
 > see:https://www.bilibili.com/video/av35817749
 1. 核心代码,创建哈夫曼树,两两合并
 ```
