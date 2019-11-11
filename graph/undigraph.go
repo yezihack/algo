@@ -1,6 +1,6 @@
 package graph
 
-import "fmt"
+//see:https://www.bilibili.com/video/av36337167
 
 //顶点,边之间的权重 三者之间的关系
 type VerArcWeight struct {
@@ -9,6 +9,7 @@ type VerArcWeight struct {
 	weight   int  //权重值
 }
 
+//顶点与权重的结构体
 type VerTexWeight struct {
 	vertexValue rune
 	weight      int
@@ -51,7 +52,9 @@ func (g *ALGraph) GetGraph() []*verTextHeader {
 	return g.adjList
 }
 
-//初始化无向网
+//采用邻接表表示法创建无向网
+//思路:
+//1.
 func (g *ALGraph) CreateUDG() {
 	verList := g.GetVerTexList(g.ver2verRel) //获取所有顶点信息
 	g.verNum = len(verList)                  //顶点数量
@@ -65,22 +68,30 @@ func (g *ALGraph) CreateUDG() {
 		}
 		g.adjList = append(g.adjList, &ver)
 	}
+
 	//构造所有顶点之间的邻接表
 	for i := 0; i < g.arcNun; i++ {
-		rel := g.ver2verRel[i]             //获取顶点与顶点之间的关系
-		x := g.LocateVex(rel.startVer)     //查找顶点的位置ID
+		rel := g.ver2verRel[i] //获取顶点与顶点之间的关系
+
+		//查找两个顶点的位置
+		x := g.LocateVex(rel.startVer) //查找顶点的位置ID
+		y := g.LocateVex(rel.endVer)   //查找顶点的位置ID
+		//fmt.Printf("rel: i:%d,x:%d,y:%d, %v\n", i, x, y, rel)
+
+		/*********************创建邻接表********************************/
 		p1 := new(arcNode)                 //初始化一个边
-		p1.vertexID = x                    //设置顶点边对应的顶点ID
+		p1.vertexID = y                    //设置顶点边对应的顶点ID
 		p1.nextArc = g.adjList[i].firstArc //使用头插法,将上一个first边接到新的边后面
 		g.adjList[i].firstArc = p1         //将新的边接入到顶点后面
 		/**********无向图,有两个方向,如果是有向图,只设置上面或下面即可******************************/
-		y := g.LocateVex(rel.endVer)       //查找顶点的位置ID
 		p2 := new(arcNode)                 //因为无向图,是双向的,需要再设置一下另一顶点的边
-		p2.vertexID = y                    //设置顶点边对应的顶点ID
+		p2.vertexID = x                    //设置顶点边对应的顶点ID
 		p2.nextArc = g.adjList[y].firstArc //使用头插法,将上一个first边接到新的边后面
 		g.adjList[y].firstArc = p2         //将新的边接入到顶点后面
 	}
 }
+
+//查找顶点的位置ID
 func (g *ALGraph) LocateVex(vertexValue rune) int {
 	for i := 0; i < g.verNum; i++ {
 		if g.adjList[i].data == vertexValue {
