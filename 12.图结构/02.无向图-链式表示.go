@@ -67,16 +67,18 @@ func (g *ALGraph) CreateUDG() {
 	}
 	//构造所有顶点之间的邻接表
 	for i := 0; i < g.arcNun; i++ {
-		rel := g.ver2verRel[i]             //获取顶点与顶点之间的关系
-		x := g.LocateVex(rel.startVer)     //查找顶点的位置ID
+		rel := g.ver2verRel[i]         //获取顶点与顶点之间的关系
+		x := g.LocateVex(rel.startVer) //查找顶点的位置ID
+		y := g.LocateVex(rel.endVer)   //查找顶点的位置ID
+
 		p1 := new(arcNode)                 //初始化一个边
-		p1.vertexID = x                    //设置顶点边对应的顶点ID
+		p1.vertexID = y                    //设置顶点边对应的顶点ID
 		p1.nextArc = g.adjList[i].firstArc //使用头插法,将上一个first边接到新的边后面
 		g.adjList[i].firstArc = p1         //将新的边接入到顶点后面
 		/**********无向图,有两个方向,如果是有向图,只设置上面或下面即可******************************/
-		y := g.LocateVex(rel.endVer)       //查找顶点的位置ID
+
 		p2 := new(arcNode)                 //因为无向图,是双向的,需要再设置一下另一顶点的边
-		p2.vertexID = y                    //设置顶点边对应的顶点ID
+		p2.vertexID = x                    //设置顶点边对应的顶点ID
 		p2.nextArc = g.adjList[y].firstArc //使用头插法,将上一个first边接到新的边后面
 		g.adjList[y].firstArc = p2         //将新的边接入到顶点后面
 	}
@@ -123,5 +125,10 @@ func main() {
 	graph := NewALGraph(rel)
 	graph.CreateUDG()
 	lst := graph.GetGraph()
-	fmt.Println(lst)
+	for _, item := range lst {
+		fmt.Printf("vertexID:%d, vertexData:%s, nextPtr:%v, nextPtr:%v\n",
+			item.ID, string(item.data), item.firstArc, item.firstArc.nextArc)
+	}
+	//show A
+	fmt.Println(string(lst[0].data), lst[0].firstArc.vertexID, lst[0].firstArc.nextArc.vertexID)
 }
