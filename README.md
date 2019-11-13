@@ -31,6 +31,7 @@
 1. 极客时间算法: https://github.com/wangzheng0822/algo
 
 ## 学习笔记
-1. 课件脑图笔记: https://mubu.com/doc/75lsJgfMh6C
-2. 代码实现: https://github.com/yezihack/algo
-3. 仅供同学们参考,也非常感谢老师推出这么优秀的课程 [调皮]
+1. [王卓老师的<<数据结构与算法>>](https://www.bilibili.com/read/cv3285768)
+1. [脑图笔记](https://mubu.com/doc/75lsJgfMh6C) 
+1. [代码实现](https://github.com/yezihack/algo)
+3. 仅供同学们参考,也非常感谢老师推出这么优秀的课程
