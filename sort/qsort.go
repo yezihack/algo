@@ -32,3 +32,30 @@ func QSort(list []int, left, right int) {
 		QSort(list, i+1, right)
 	}
 }
+
+func FastSort(arr []int) {
+	_fastSort(arr, 0, len(arr)-1)
+}
+func _fastSort(arr []int, left, right int) {
+	if left < right {
+		index := _partition(arr, left, right)
+		_fastSort(arr, left, index - 1)
+		_fastSort(arr, index + 1, right)
+	}
+}
+func _partition(arr []int, left, right int) int {
+	pivot := left
+	index := pivot + 1
+	for i := index; i <= right; i ++ {
+		if arr[i] < arr[pivot] {
+			_swap(arr, i, index)
+			index ++
+		}
+	}
+	index --
+	_swap(arr, pivot, index)
+	return index
+}
+func _swap(arr []int, i, j int) {
+	arr[i], arr[j] = arr[j], arr[i]
+}

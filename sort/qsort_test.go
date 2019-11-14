@@ -1,4 +1,4 @@
-package sort_test
+package sort
 
 import (
 	"fmt"
@@ -142,5 +142,12 @@ func TestQSortBook(t *testing.T) {
 	list := []int{8, 3, 2, 1, 5, 9}
 	fmt.Println(list)
 	QSortBook(list, 0, len(list)-1)
+	fmt.Println(list)
+}
+
+func TestFastSort(t *testing.T) {
+	list := []int{8, 3, 2, 1, 5, 9}
+	fmt.Println(list)
+	FastSort(list)
 	fmt.Println(list)
 }
