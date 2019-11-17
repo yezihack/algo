@@ -170,6 +170,8 @@ func TestQuickSort3(t *testing.T) {
 }
 //简单选择排序 不稳定排序,O(N^2)
 func TestSimplySelectSort(t *testing.T) {
+	fmt.Println(1<<1, 1<<2, 1<<3, 1<<4, 1<<5, 1<<6)
+	fmt.Println(100>>1, 100>>2, 100>>3, 100>>4, 100>>5, 100>>6)
 	arr := []int{5, 2, 8, 7, 4, 3, 1, 6}
 	fmt.Println("before", arr)
 	SimplySelectSort(arr)

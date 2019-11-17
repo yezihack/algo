@@ -1,50 +1,35 @@
-package leet_code_test
+package leet_code
 
 import (
 	"fmt"
-	"sort"
 	"testing"
 )
-
-func Test3Sum(t *testing.T) {
-	nums := []int{-1, 0, 1, 2, -1, -4}
-	result := threeSum(nums)
-	fmt.Println(result)
+//暴力方法
+func TestThreeSum(t *testing.T) {
+	fmt.Println(ThreeSum([]int{-1, 0, 1, 2, -1, -4}))
+	fmt.Println(ThreeSum([]int{0, 0, 0, 0}))
+	fmt.Println(ThreeSum([]int{-2, 0, 0, 2, 2}))
+	fmt.Println(ThreeSum([]int{3, 0, -2, -1, 1, 2}))
 }
-func threeSum(nums []int) [][]int {
-	sort.Ints(nums)
-	fmt.Println(nums)
-	sum := make([][]int, 0)
-	for k := 0; k < len(nums); k++ {
-		fix := nums[k]
-		if nums[k] > 0 {
-			break
-		}
-		if k > 0 && nums[k] == nums[k-1] { //两者=0,再加一个数,永远不会=0的.
-			continue
-		}
-		i, j := k+1, len(nums)-1
-		for i < j {
-			if nums[i]+nums[j] == -fix {
-				if i == k+1 || j == len(nums)-1 {
-					sum = append(sum, []int{nums[i], nums[j], nums[k]})
-					i++
-					j--
-				} else if nums[i] == nums[i-1] {
-					i++
-				} else if nums[j] == nums[j+1] {
-					j--
-				} else {
-					sum = append(sum, []int{nums[i], nums[j], nums[k]})
-					i++
-					j--
-				}
-			} else if nums[i]+nums[j] < -fix {
-				i++
-			} else {
-				j--
-			}
-		}
+func BenchmarkThreeSum(b *testing.B) {
+	for i := 0; i < b.N; i ++{
+		ThreeSum([]int{3,0,-2,-1,1,2})
+		//500000	      2816 ns/op
 	}
-	return sum
 }
+
+//二个循环,借用map法
+func TestThreeSumMap(t *testing.T) {
+	fmt.Println(ThreeSumMap([]int{-1, 0, 1, 2, -1, -4}))
+	fmt.Println(ThreeSumMap([]int{0,0,0,0}))
+	fmt.Println(ThreeSumMap([]int{-2,0,0,2,2}))
+}
+//左右指针法
+func TestThreeSumPointer(t *testing.T) {
+	fmt.Println(ThreeSumPointer([]int{-1, 0, 1, 2, -1, -4}))
+	fmt.Println(ThreeSumPointer([]int{0,0,0,0}))
+	fmt.Println(ThreeSumPointer([]int{-2,0,0,2,2}))
+}
+
+
+

@@ -1,4 +1,4 @@
-package leet_code_test
+package leet_code
 
 import (
 	"fmt"
@@ -13,16 +13,25 @@ func TestFindTwoSum(t *testing.T) {
 	a, b := FindTwoSum(list, 15)
 	fmt.Println(a, b)
 }
-
-//思路: 利用相减的结果,错位存储map, 也就是说把相减的结果做key存入map里,待下次相减的结果在map里找到,并返回
-func FindTwoSum(list []int, target int) (int, int) {
-	checked := make(map[int]int)
-	for i := 0; i < len(list); i++ {
-		diff := target - list[i]        //相减获取差值
-		if _, ok := checked[diff]; ok { //判断是否存在map里
-			return checked[diff], i //返回map的值,与当前i为下标
-		}
-		checked[list[i]] = i //将相减的结果做key存储.
-	}
-	return -1, -1
+func TestTwoSum(t *testing.T) {
+	lst := []int{3,2,4}
+	s := TwoSum(lst, 6)
+	fmt.Println(s)
 }
+func TestTwoSum2(t *testing.T) {
+	lst := []int{3,2,4,8,9,10}
+	fmt.Println(TwoSum2(lst, 19))
+	fmt.Println(TwoSum2(lst, 5))
+	fmt.Println(TwoSum2(lst, 12))
+	fmt.Println(TwoSum2(lst, 18))
+	fmt.Println(TwoSum2(lst, 14))
+}
+func TestTwoSum3(t *testing.T) {
+	lst := []int{3,2,4,8,9,10}
+	fmt.Println(TwoSum3(lst, 19))
+	fmt.Println(TwoSum3(lst, 5))
+	fmt.Println(TwoSum3(lst, 12))
+	fmt.Println(TwoSum3(lst, 18))
+	fmt.Println(TwoSum3(lst, 14))
+}
+
