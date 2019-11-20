@@ -3,7 +3,7 @@ package _03
 import (
 	"sort"
 )
-
+//设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
 type KthLargest struct {
 	nums []int
 	k int
