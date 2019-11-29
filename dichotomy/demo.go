@@ -10,7 +10,7 @@ func dichotomy(val int, lst []int) int {
 	//进行排序 1, 2, 3, 4, 5, 6,
 	sort.Ints(lst)
 	var start, end = 0, len(lst) - 1 //设置最大下标值,注意计算mid时需要加1, 原因下面有说
-	var mid = (start + end) / 2
+	var mid = (start + end) >> 1
 	if val == lst[start] {
 		return start
 	}
@@ -39,7 +39,7 @@ func dichotomy(val int, lst []int) int {
 //第二种写法
 func dichotomy2(val int, lst []int) int {
 	var start, end = 0, len(lst) //求出最小值和最大数
-	var mid = (start + end) / 2
+	var mid = (start + end) >> 1
 	if val == lst[start] {
 		return start
 	}
@@ -80,7 +80,7 @@ func dichotomy3(val int, lst []int) int {
 		return -1
 	}
 	for {
-		mid = (start + end) / 2                                                   //求中间下位值, golang整形除取最小值,相当于math.Floor
+		mid = (start + end) >> 1                                                   //求中间下位值, golang整形除取最小值,相当于math.Floor
 		fmt.Printf("start:%d, end:%d, mid:%d, want: %d \n", start, end, mid, val) //打印
 		if val > lst[mid] {                                                       //如果目标值大于中间值,则将中间mid + 1赋值给start
 			start = mid + 1
