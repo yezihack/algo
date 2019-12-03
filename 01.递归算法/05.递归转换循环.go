@@ -1,20 +1,18 @@
-package main
-
-import "fmt"
+package Recurive
 
 //使用尾递归实现 fibonacci
-func fib(n int) int {
+func Fib(n int) int {
 	if n < 0 {
 		return 0
 	}
 	if n <= 2 {
 		return 1
 	}
-	return fib(n-1) + fib(n-2)
+	return Fib(n-1) + Fib(n-2)
 }
 
 //使用循环实现 fibonacci
-func fibByFor(n int) int {
+func FibByFor(n int) int {
 	if n < 0 {
 		return 0
 	}
@@ -26,9 +24,4 @@ func fibByFor(n int) int {
 		s1, s2 = s2, s1+s2
 	}
 	return s2
-}
-func main() {
-	n := 7
-	fmt.Println(fib(n))
-	fmt.Println(fibByFor(n))
 }

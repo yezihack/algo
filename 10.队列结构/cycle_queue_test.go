@@ -1,4 +1,4 @@
-package main
+package queue_10
 
 import "testing"
 

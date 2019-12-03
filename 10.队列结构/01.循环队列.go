@@ -1,4 +1,4 @@
-package main
+package queue_10
 
 import "fmt"
 
@@ -74,23 +74,23 @@ func (q *CycleQueue) QueueEmpty() bool {
 func (q *CycleQueue) Display() string {
 	return fmt.Sprintf("%v", q.data)
 }
-func main() {
-	c := NewCycleQueue(3)
-	fmt.Println(c.Push(1))
-	fmt.Println(c.Push(2))
-	fmt.Println(c.Push(3))
-	fmt.Println(c.Push(4))
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	fmt.Println(c.Pop())
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	c.Push(9)
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	fmt.Println(c.Pop())
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	c.Push(11)
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	fmt.Println(c.Pop())
-	fmt.Println(c.Pop())
-	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
-	fmt.Println(c.QueueFull(), c.QueueEmpty())
-}
+//func main() {
+//	c := NewCycleQueue(3)
+//	fmt.Println(c.Push(1))
+//	fmt.Println(c.Push(2))
+//	fmt.Println(c.Push(3))
+//	fmt.Println(c.Push(4))
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	fmt.Println(c.Pop())
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	c.Push(9)
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	fmt.Println(c.Pop())
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	c.Push(11)
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	fmt.Println(c.Pop())
+//	fmt.Println(c.Pop())
+//	fmt.Println("realLength", c.QueueLength(), "queue", c.Display())
+//	fmt.Println(c.QueueFull(), c.QueueEmpty())
+//}

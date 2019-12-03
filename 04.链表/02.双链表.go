@@ -1,4 +1,4 @@
-package main
+package linked
 
 import "fmt"
 
@@ -101,17 +101,17 @@ func (d *DoubleLink) RemoveTail() Element {
 	d.len--
 	return node.element
 }
-func main() {
-	link := NewDoubleLink()
-	link.Append(1)
-	link.Append(2)
-	link.Append(3)
-	link.AddHead(0)
-	link.Print()
-	fmt.Println("删除头部", link.RemoveHead())
-	link.AddHead(-1)
-	link.AddHead(-2)
-	link.Print()
-	fmt.Println("删除尾部", link.RemoveTail())
-	link.Print()
-}
+//func main() {
+//	link := NewDoubleLink()
+//	link.Append(1)
+//	link.Append(2)
+//	link.Append(3)
+//	link.AddHead(0)
+//	link.Print()
+//	fmt.Println("删除头部", link.RemoveHead())
+//	link.AddHead(-1)
+//	link.AddHead(-2)
+//	link.Print()
+//	fmt.Println("删除尾部", link.RemoveTail())
+//	link.Print()
+//}

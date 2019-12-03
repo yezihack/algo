@@ -1,4 +1,4 @@
-package main
+package queue_10
 
 type LinkedNode struct {
 	front *LinkedNode //前趋指针

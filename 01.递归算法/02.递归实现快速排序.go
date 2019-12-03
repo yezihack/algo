@@ -1,4 +1,4 @@
-package main
+package Recurive
 
 import "fmt"
 
@@ -29,9 +29,3 @@ func QSort(a []int, left, right int) {
 	}
 }
 
-func main() {
-	a := []int{4, 2, 7, 9, 1, 8, 5, 6, 3}
-	fmt.Println("sort:", a)
-	QSort(a, 0, len(a)-1)
-	fmt.Println("sorted", a)
-}

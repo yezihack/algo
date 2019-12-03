@@ -5,6 +5,19 @@ import (
 	"testing"
 )
 
+func TestInsertion(t *testing.T) {
+	arr := []int{8, 2, 5, 4}
+	fmt.Println(arr)
+	Insertion(arr)
+	fmt.Println(arr)
+}
+
+func TestInsertionSort(t *testing.T) {
+	arr := []int{3, 2, 5}
+	fmt.Println(arr)
+	InsertionSort(arr)
+	fmt.Println(arr)
+}
 
 //插入排序,不带哨兵
 func TestInsertSort(t *testing.T) {
@@ -85,6 +98,11 @@ func TestShellSort(t *testing.T) {
 	if arr[3] != 4 {
 		t.Errorf("expect:%d, actual:%d\n", 4, arr[3])
 	}
+}
+func TestBubble(t *testing.T) {
+	arr := []int{8, 2, 3, 5, 7, 9}
+	Bubble(arr)
+	fmt.Println(arr)
 }
 
 func TestBubbleSort(t *testing.T) {

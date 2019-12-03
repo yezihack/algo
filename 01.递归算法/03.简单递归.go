@@ -1,11 +1,11 @@
-package main
+package Recurive
 
 import (
 	"fmt"
 	"runtime/debug"
 )
 
-func print(i, j int) {
+func Print(i, j int) {
 	if i < j {
 		mid := (i + j) / 2
 		fmt.Printf("a: i:%d, j:%d, mid:%d\n", i, j, mid)
@@ -16,7 +16,3 @@ func print(i, j int) {
 	}
 }
 
-func main() {
-
-	print(1, 5)
-}
