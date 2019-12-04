@@ -15,3 +15,23 @@ func SimplySelectSort(arr []int) {
 		}
 	}
 }
+
+//
+func SelectSort(arr []int) {
+	size := len(arr)
+	if size <= 1 {
+		return
+	}
+	for i := 0; i < size -1;i ++ {
+		minIndex := i
+		for j := i + 1; j < size; j ++ {
+			if arr[j] < arr[minIndex] {
+				minIndex = j
+			}
+		}
+		//交换位置
+		if minIndex != i { //不相等则进行交换,相同则减少一次交换操作.
+			arr[i], arr[minIndex] = arr[minIndex], arr[i]
+		}
+	}
+}

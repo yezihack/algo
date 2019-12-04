@@ -39,6 +39,8 @@
 ### 时间复杂度
 ![](assets/Oalgo.png)
 
+## 排序的总结
+![](assets/sort.jpg)
 
 
 ## 学习笔记

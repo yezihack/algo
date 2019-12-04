@@ -2,6 +2,8 @@ package _6_排序算法
 
 import (
 	"fmt"
+	"github.com/yezihack/algo/00.src"
+	"github.com/yezihack/algo/16.排序算法/exercise"
 	"testing"
 )
 
@@ -205,9 +207,27 @@ func TestSimplySelectSort(t *testing.T) {
 	}
 }
 
+func TestSelectSort(t *testing.T) {
+	arr := []int{3, 1, 4, 2}
+	SelectSort(arr)
+	src.Asset(1, t, 2, arr[1])
+	src.Asset(2, t, 4, arr[3])
+	src.Asset(3, t, 1, arr[0])
+}
 
-
-
+func TestMergeSort(t *testing.T) {
+	fmt.Println(MergeSort([]int{8, 2, 7, 6, 3, 2, 1, 5}))
+	fmt.Println(MergeSort([]int{3, 5, 2, 1, 4}))
+}
+func TestMergeSort2(t *testing.T) {
+	fmt.Println(exercise.MergeSort([]int{8, 2, 7, 6, 3, 2, 1, 5}))
+	fmt.Println(exercise.MergeSort([]int{3, 5, 2, 1, 4}))
+}
+func TestQuickSort2(t *testing.T) {
+	arr := []int{8, 3, 2, 5, 4, 1, 7, 6}
+	exercise.QuickSort(arr)
+	fmt.Println(arr)
+}
 
 
 
