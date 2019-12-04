@@ -1,7 +1,6 @@
 package _6_排序算法
 
 //归并是采用分治思想.先折半数组,然后再折半.直到一个元素的数组.然后进行合并一个数组
-
 func MergeSort(arr []int) []int {
 	if len(arr) < 2 {
 		return arr

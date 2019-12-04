@@ -1,3 +1,6 @@
+[![GitHub stars](https://img.shields.io/github/stars/yezihack/algo?style=flat-square)](https://github.com/yezihack/algo/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yezihack/algo)](https://github.com/yezihack/algo/network)
+
 # 学习算法,终生学习.
 > 算法本质是使程序片段执行得到一种最优最快的方法,
 从而实现计算量最少最优,CPU占用最低,响应最快的结果.
@@ -17,6 +20,16 @@
 1. 将大问题不断缩小范围,得到一个最小范围解
 1. 借用空间换时间.
 
+## 排序
+1. [冒泡排序](16.排序算法/03.冒泡排序.go)
+1. [插入排序](16.排序算法/01.插入排序.go)
+1. [选择排序](16.排序算法/05.简单选择排序.go)
+1. [希尔排序](16.排序算法/02.希尔排序.go)
+1. [归并排序](16.排序算法/08.归并排序.go)
+1. [快速排序](16.排序算法/04.快速排序.go)
+
+### 排序的总结
+![](assets/sort.jpg)
 
 ## 列表
 1. [斐波那契数列](fibonacci/main.go) chan实现
@@ -39,8 +52,7 @@
 ### 时间复杂度
 ![](assets/Oalgo.png)
 
-## 排序的总结
-![](assets/sort.jpg)
+
 
 
 ## 学习笔记
