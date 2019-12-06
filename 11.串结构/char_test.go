@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"github.com/yezihack/algo/00.src"
+	"testing"
+)
 
 func TestBFSearch(t *testing.T) {
 	tests := []struct {
@@ -35,4 +38,10 @@ func TestBFSearch(t *testing.T) {
 			t.Errorf("expect:%d, actual:%d\n", tt.expect, idx)
 		}
 	}
+}
+
+func TestBFS(t *testing.T) {
+	src.Asset(1, t, 2, Bfs("abcdefg", "cde"))
+	src.Asset(2, t, 0, Bfs("abcdefg", "abc"))
+	src.Asset(3, t, 5, Bfs("abcdefg", "fg"))
 }

@@ -8,7 +8,9 @@ BF算法,即简单匹配算法,也称暴力算法(brute-force)
 */
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 //s是主串, t子串
 //返回子串出现在主串的位置,如果未匹配到则返回-1
@@ -32,6 +34,42 @@ func BFSearch(s, t string) int {
 	}
 	return -1
 }
+
+//BF算法Brute Force暴力匹配算法,又叫朴素匹配算法
+func BF(s, t string) int {
+	n, m := 0, 0 //申请二个指针, n是s主串的指针, m是t模式串的指针
+	for n < len(s) && m < len(t) {
+		if s[n] == t[m] { //判断指针位置的字符是否相等,如果相等则指针向前移动
+			n ++
+			m ++
+		} else {//否则主串位置回到上次匹配位置的前一位, 子串位置回到0位置,
+			n = n - m + 1
+			m = 0
+		}
+	}
+	if m >= len(t) {//m指针移动大于等于子串长度,说明匹配成功
+		return n-len(t) //返回n指针减去子串t的长度就是匹配子串的开始位置
+	}
+	return -1 //否则匹配不成功
+}
+
+func Bfs(s, t string) int {
+	n, m := 0, 0
+	for n < len(s) && m < len(t) {
+		if s[n] == t[m] {
+			n ++
+			m ++
+		} else {
+			n = n - m + 1
+			m = 0
+		}
+	}
+	if m >= len(t) {
+		return n - len(t)
+	}
+	return -1
+}
 func main() {
 	fmt.Println(BFSearch("aabbcc", "abb"))
+	fmt.Println(BFS("aabbcc", "abb"))
 }
