@@ -11,6 +11,7 @@
 ## 数据结构图谱
 ![](https://mubu.com/document_image/b0d5dd17-e131-4de9-9149-0c752e4c76c7-2746950.jpg)
 
+
 ## 算法好坏基本判断
 1. 时间复杂度,使用大O表示法.如O(1), O(n), O(LogN)
 1. 空间复杂度.
@@ -27,9 +28,9 @@
 1. [希尔排序](16.排序算法/02.希尔排序.go)
 1. [归并排序](16.排序算法/08.归并排序.go)
 1. [快速排序](16.排序算法/04.快速排序.go)
-
 ### 排序的总结
 ![](assets/sort.jpg)
+
 
 ## 列表
 1. [斐波那契数列](fibonacci/main.go) chan实现
@@ -43,6 +44,9 @@
 1. [基本定义与概念](tree/README.md)
 1. [二叉树基本操作](tree/binary_tree.go)
 1. [哈夫曼树](tree/huffman_tree.go)
+
+## 贪心思想
+1. [非负整数a,删除k个元素,求最大值](21.贪心思想/01.求最大值.go)
 
 ## 各种算法已代码实现
 1. 极客时间算法: https://github.com/wangzheng0822/algo
