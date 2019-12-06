@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/yezihack/algo/00.src"
 	"github.com/yezihack/algo/16.排序算法/exercise"
+	"sort"
 	"testing"
 )
 
@@ -227,7 +228,12 @@ func TestQuickSort2(t *testing.T) {
 	arr := []int{8, 3, 2, 5, 4, 1, 7, 6}
 	exercise.QuickSort(arr)
 	fmt.Println(arr)
+	sort.Ints()
 }
 
-
+func TestBucketSort(t *testing.T) {
+	arr := []int{8, 3, 2, 5, 4, 1, 7, 6, 3}
+	BucketSort(arr)
+	fmt.Println(arr)
+}
 
