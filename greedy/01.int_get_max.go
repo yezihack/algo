@@ -1,8 +1,6 @@
-package _1_贪心思想
+package greedy
 
-import (
-	"strconv"
-)
+import "strconv"
 
 //问题描述: 给你一个整数 n，使得从 n 中删除 k 个数字之后的数字最大。
 //如果 1432219 整数, 删除3个数, 得到4329最大值
@@ -36,3 +34,4 @@ func GetMaxNumber(n, count int) int {
 	v, _ := strconv.Atoi(result)
 	return v
 }
+
