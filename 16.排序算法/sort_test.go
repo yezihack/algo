@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/yezihack/algo/00.src"
 	"github.com/yezihack/algo/16.排序算法/exercise"
-	"sort"
 	"testing"
 )
 
@@ -107,7 +106,7 @@ func TestBubble(t *testing.T) {
 	Bubble(arr)
 	fmt.Println(arr)
 }
-
+//冒泡排序
 func TestBubbleSort(t *testing.T) {
 	arr := []int{8, 2, 1, 7, 4, 3, 5, 6}
 	arr = []int{1,2,3,4,5,6,7,8}
@@ -191,8 +190,6 @@ func TestQuickSort3(t *testing.T) {
 }
 //简单选择排序 不稳定排序,O(N^2)
 func TestSimplySelectSort(t *testing.T) {
-	fmt.Println(1<<1, 1<<2, 1<<3, 1<<4, 1<<5, 1<<6)
-	fmt.Println(100>>1, 100>>2, 100>>3, 100>>4, 100>>5, 100>>6)
 	arr := []int{5, 2, 8, 7, 4, 3, 1, 6}
 	fmt.Println("before", arr)
 	SimplySelectSort(arr)
@@ -207,7 +204,7 @@ func TestSimplySelectSort(t *testing.T) {
 		t.Errorf("expect:%d, actual:%d\n", 4, arr[3])
 	}
 }
-
+//选择排序
 func TestSelectSort(t *testing.T) {
 	arr := []int{3, 1, 4, 2}
 	SelectSort(arr)
@@ -215,22 +212,23 @@ func TestSelectSort(t *testing.T) {
 	src.Asset(2, t, 4, arr[3])
 	src.Asset(3, t, 1, arr[0])
 }
-
+//归并排序
 func TestMergeSort(t *testing.T) {
 	fmt.Println(MergeSort([]int{8, 2, 7, 6, 3, 2, 1, 5}))
 	fmt.Println(MergeSort([]int{3, 5, 2, 1, 4}))
 }
+//归并
 func TestMergeSort2(t *testing.T) {
 	fmt.Println(exercise.MergeSort([]int{8, 2, 7, 6, 3, 2, 1, 5}))
 	fmt.Println(exercise.MergeSort([]int{3, 5, 2, 1, 4}))
 }
+//快排
 func TestQuickSort2(t *testing.T) {
 	arr := []int{8, 3, 2, 5, 4, 1, 7, 6}
 	exercise.QuickSort(arr)
 	fmt.Println(arr)
-	sort.Ints()
 }
-
+//桶排序
 func TestBucketSort(t *testing.T) {
 	arr := []int{8, 3, 2, 5, 4, 1, 7, 6, 3}
 	BucketSort(arr)
