@@ -28,3 +28,36 @@ func Asset(name interface{}, t *testing.T, expect, actual interface{}) {
 		}
 	})
 }
+
+type ToolsInteger struct {
+}
+func NewInt() *ToolsInteger {
+	return &ToolsInteger{}
+}
+//切片加入元素, index是插入位置, value是需要插入的值
+func (ToolsInteger) InsertIndex(arr []int, index, value int) []int {
+	rear := append([]int{}, arr[index:]...)
+	return append(append(arr[:index], value), rear...)
+}
+//切片克隆
+func (ToolsInteger) Clone(src []int) (dst []int) {
+	dst = make([]int, len(src))
+	copy(dst,src)
+	return
+}
+type ToolsByte struct {
+}
+func NewByte() *ToolsByte {
+	return &ToolsByte{}
+}
+//切片加入元素, index是插入位置, value是需要插入的值
+func (ToolsByte) InsertIndex(arr []byte, index, value byte) []byte {
+	rear := append([]byte{}, arr[index:]...)
+	return append(append(arr[:index], value), rear...)
+}
+//切片克隆
+func (ToolsByte) Clone(src []byte) (dst []byte) {
+	dst = make([]byte, len(src))
+	copy(dst,src)
+	return
+}

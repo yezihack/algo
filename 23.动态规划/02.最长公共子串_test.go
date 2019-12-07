@@ -5,9 +5,7 @@ import (
 	"testing"
 )
 
-func TestPubStr(t *testing.T) {
-	src.Asset(1, t, "lue", PubStr("clues","blue"))
-	src.Asset(2, t, "fsh", PubStr("fish","fosh"))
-	src.Asset(3, t, "llo", PubStr("hello","kallo"))
-	src.Asset(4, t, "ks", PubStr("kiss","kas"))
+//最长公共子串
+func TestSubString(t *testing.T) {
+	src.Asset(1, t, "sh", SubString("fish", "fosh"))
 }
