@@ -11,9 +11,16 @@ type Goods struct {
 //包背限定m大小, 有不同的物品列表.需要装载最大价值的物品列表.
 func GetMaxValueGoodsList(list []*Goods, w int) {
 	//初始矩阵大小
-	matrix := make([][]Goods, len(list)+1)
-	for row := 0; row <= len(list); row ++ {
-		matrix[row] = make([]Goods, w)
+	rowLen := len(list)+1
+	colLen := w
+	matrix := make([][]*Goods, rowLen)
+	for row := 0; row < rowLen; row ++ {
+		matrix[row] = make([]*Goods, colLen)
+	}
+	for i := 0; i < rowLen; i ++ {
+		for j := 0; j < colLen; j ++ {
+			matrix[i][j] = new(Goods)
+		}
 	}
 	for i := 0; i < len(list); i ++ {
 		matrix[i][0].name = list[i].name
@@ -51,7 +58,7 @@ func printGoods(list []*Goods)  {
 		fmt.Printf("ID:%d,name:%s, weight:%d, value:%d\n", k, item.name, item.weight, item.value)
 	}
 }
-func printMatrix2(weight int, list [][]Goods)  {
+func printMatrix2(weight int, list [][]*Goods)  {
 	fmt.Print("   ")
 	for i := 1; i <= weight; i ++ {
 		fmt.Print(i, " ")
