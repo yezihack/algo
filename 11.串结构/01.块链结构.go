@@ -2,7 +2,8 @@
 利用块链存储,提高存储密度
 存储密度公式=串值所占的存储/实际分配的存储
 */
-package main
+package string_string
+
 
 import "unsafe"
 

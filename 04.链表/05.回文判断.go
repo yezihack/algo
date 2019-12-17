@@ -1,5 +1,15 @@
 package linked
 
+/*******************
+题目:　判断字符串是否是回文
+如：abba, 从前读到尾和从尾读取前都是一样的.
+abcba, aviva 都是回文字
+
+提供三种解题思路:
+1.第一种是借用一个栈, 将一半的数据存入栈中, 后半部分与出栈的元素比较.
+2.第二种二个指针向中间逼近
+3.第三种也是使用二个指针,先从中间开始向左右扩散
+********************/
 //使用栈判断,思路:将前一半入栈,后一半与栈里的元素比较
 func IsPalindrome1(l *SingleLinked) bool {
 	size := l.length
@@ -28,7 +38,8 @@ func IsPalindrome1(l *SingleLinked) bool {
 	}
 	return true
 }
-//左右指针向中间移动比较
+//解题思路:
+// 借用两个指针,即左右指针向中间移动比较
 func CheckPalindrome(s string) bool {
 	if s == "" {
 		return false
@@ -47,6 +58,10 @@ func CheckPalindrome(s string) bool {
 	}
 	return true
 }
+
+//解题思路:
+// 与左右指针向中间逼近的思路刚好相反的思路
+// 先从中间开始向两边扩散逐一比较字符
 func CheckPalindrome2(s string) bool {
 	if s == "" {
 		return false

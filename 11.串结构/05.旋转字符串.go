@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package string_string
 
 func LeftShiftOne(s string) string {
 	b := []byte(s)
@@ -11,6 +9,7 @@ func LeftShiftOne(s string) string {
 	b[len(b)-1] = one
 	return string(b)
 }
+
 func LeftShiftTwo(s string) string {
 	b := []byte(s)
 	t1 := b[0]
@@ -21,9 +20,4 @@ func LeftShiftTwo(s string) string {
 	b[len(b)-1] = t2
 	b[len(b)-2] = t1
 	return string(b)
-}
-func main() {
-	//abcdef->cdefab
-	fmt.Println(LeftShiftOne(LeftShiftOne("abcdef")))
-	fmt.Println(LeftShiftTwo("abcdef"))
 }

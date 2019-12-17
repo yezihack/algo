@@ -2,6 +2,7 @@ package linked
 
 import "fmt"
 
+//打印链表
 func Print(head *SingleNode) {
 	p := head.next
 	format := ""
@@ -14,6 +15,7 @@ func Print(head *SingleNode) {
 	}
 	fmt.Println(format)
 }
+//反转链表,非递归方法
 func Reverse(head *SingleNode) *SingleNode {
 	if head == nil || head.next == nil{
 		return nil

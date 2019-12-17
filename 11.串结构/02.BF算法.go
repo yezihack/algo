@@ -6,11 +6,7 @@ BF算法,即简单匹配算法,也称暴力算法(brute-force)
 3.匹配步骤: T的索引j, S(模式串)的索引i, 不相等时则j回到0位置,i回到上次位置加1的位置
 3.回朔公式:i = i - j + 1
 */
-package main
-
-import (
-	"fmt"
-)
+package string_string
 
 //s是主串, t子串
 //返回子串出现在主串的位置,如果未匹配到则返回-1
@@ -70,6 +66,5 @@ func Bfs(s, t string) int {
 	return -1
 }
 func main() {
-	fmt.Println(BFSearch("aabbcc", "abb"))
-	fmt.Println(BFS("aabbcc", "abb"))
+
 }
