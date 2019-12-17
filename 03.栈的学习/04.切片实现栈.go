@@ -9,7 +9,7 @@ type StackEntry struct {
 }
 func NewStackEntry(cap int) *StackEntry {
 	return &StackEntry{
-		items:make([]interface{}, cap),
+		items:make([]interface{}, cap, cap),
 		cap:cap,
 	}
 }

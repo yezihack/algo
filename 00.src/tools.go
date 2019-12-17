@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -23,8 +24,21 @@ func Asset(name interface{}, t *testing.T, expect, actual interface{}) {
 		nameStr = "default"
 	}
 	t.Run(nameStr, func(t *testing.T) {
-		if expect != actual {
-			t.Errorf("%s, expect:%v, actual:%v\n", t.Name(), expect, actual)
+		switch expect.(type) {
+		case []int:
+			//判断目标类型是否是[]int类型,不是则报错.
+			switch actual.(type) {
+			case []int:
+				if ArrToStr(expect.([]int)) != ArrToStr(actual.([]int)){
+					t.Errorf("SLICE,%s, expect:%v, actual:%v\n", t.Name(), expect, actual)
+				}
+			default:
+				t.Errorf("ERR:%s, expect:%v, actual:%v\n", t.Name(), expect, actual)
+			}
+		default:
+			if expect != actual {
+				t.Errorf("DEFAULT:%s, expect:%v, actual:%v\n", t.Name(), expect, actual)
+			}
 		}
 	})
 }
@@ -60,4 +74,13 @@ func (ToolsByte) Clone(src []byte) (dst []byte) {
 	dst = make([]byte, len(src))
 	copy(dst,src)
 	return
+}
+//切片转字符串
+func ArrToStr(arr []int) string {
+	str := ""
+	for _, v := range arr {
+		str += strconv.Itoa(v) + ","
+	}
+	str = str[:len(str)-1]
+	return str
 }

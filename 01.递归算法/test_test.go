@@ -13,6 +13,12 @@ func TestQSort(t *testing.T) {
 	QSort(a, 0, len(a)-1)
 	fmt.Println("sorted", a)
 }
+func TestQuickSort(t *testing.T) {
+	a := []int{4, 2, 7, 9, 1, 8, 5, 6, 3}
+	QuickSort(a)
+	fmt.Println(a)
+}
+
 func TestSum(t *testing.T) {
 	a := []int{1, 2, 3, 4, 5}
 	b := Sum(a)
