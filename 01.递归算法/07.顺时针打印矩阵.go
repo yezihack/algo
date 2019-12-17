@@ -11,7 +11,7 @@ import "fmt"
 ]
 
 输出[1, 2, 3, 6, 9, 8, 7, 4, 5]
-这道是在剑指offer里有讲.参数csdn:https://blog.csdn.net/hefenglian/article/details/78339990
+这道是在剑指offer里29题有讲.参数csdn:https://blog.csdn.net/hefenglian/article/details/78339990
 
 解题思路1: 使用递归思维
 如果一个更大的二维数据, 输出最外层,里面又是一个完整二维数据,就可以使用递归实现
@@ -33,61 +33,6 @@ child(n)=a[row-2][col-2]
 1. 4*3的矩阵,最后只有2个元素,只能打印从左到右. 没有从上到下, 从右到左, 从下到上的打印
 1. 3*4的矩阵,最后只有2个元素,只能打印从左到右,从上到下,没有从右到左,从下到上的打印.
 */
-
-//递归实现1
-var result = make([]int, 0)
-func PrintSnake(a [][]int)  {
-	row := len(a)
-	col := 0
-	for i := 0; i < row; i ++ {
-		col = len(a[i])
-	}
-	fmt.Printf("每一次循环初始: a:%v, row:%d;col:%d\n", a, row, col)
-	//递归结束条件,也就是最小矩阵,一个元素
-	if row == 1 && col == 1 {
-		fmt.Print(a[row-1][col-1], "one")
-		result = append(result, a[row-1][col-1])
-		return
-	}
-	fmt.Println()
-	//打印第一行
-
-	for i := 0; i < col; i ++ {
-		fmt.Print(a[0][i], "-")
-		result = append(result, a[0][i])
-	}
-	fmt.Println()
-	//打印最后一列
-	for i := 1; i < row; i ++ {
-		fmt.Print(a[i][col-1], "lc")
-		result = append(result, a[i][col-1])
-	}
-	fmt.Println()
-	//打印最后一行
-	for i := col-2;i >= 0;i -- {
-		fmt.Print(a[row-1][i], "la")
-		result = append(result, a[row-1][i])
-	}
-	fmt.Println()
-	//打印第一列
-	for i := row-2; i >= 1;i -- {
-		result = append(result, a[i][0])
-	}
-	//若行, 列还有元素未打印
-	if row - 2 > 0 && col - 2 > 0 {
-		//构造一个新的二维数组
-		child := make([][]int, row-2)
-		for i := 0; i < row-2; i ++ {
-			child[i] = make([]int, col-2)
-		}
-		for i := 1; i <= row-2; i ++ {
-			for j := 1;j <= col-2; j ++ {
-				child[i-1][j-1] = a[i][j]
-			}
-		}
-		PrintSnake(child)
-	}
-}
 
 // 递归实现
 // 顺时针打印数组
@@ -113,7 +58,6 @@ func ClockWisePrint(arr [][]int) []int {
 			result = append(result, arr[i][col-1])
 		}
 	}
-
 	//打印最后一行
 	if col > 2 && row >= 2 {
 		for i := col-2; i >= 0; i-- {
@@ -121,7 +65,6 @@ func ClockWisePrint(arr [][]int) []int {
 			result = append(result, arr[row-1][i])
 		}
 	}
-
 	//打印第一列
 	if row > 2 && col > 2 {
 		for i := row-2; i > 0; i-- {
@@ -129,7 +72,6 @@ func ClockWisePrint(arr [][]int) []int {
 			result = append(result, arr[i][0])
 		}
 	}
-
 	//将剩余的元素再构造一个子二维数组, 递归调用.
 	if row - 2 > 0 && col - 2 > 0{
 		//初使一个子二维切片里
@@ -164,6 +106,7 @@ func PrintMatrixLikeSnake(matrix [][]int) []int {
 	result := make([]int, 0)
 	//准备打印第一个最外层的圈,定义一个启始坐标
 	start := 0
+	//我们发现5*5的矩阵, 最后一个圈坐标为(2,2), 4*4矩阵最后一个圈的坐标是(1,1),得出退出条件X坐标大于2倍起点坐标.Y坐标同理可得.
 	for rows > start * 2 && columns > start * 2 {
 		endX := columns-1-start
 		endY := rows-1-start
