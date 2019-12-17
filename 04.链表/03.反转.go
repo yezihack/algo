@@ -1,21 +1,36 @@
 package linked
 
-import "fmt"
+import (
+	"fmt"
+	. "github.com/yezihack/algo/00.src"
+)
 
-//打印链表
-func Print(head *SingleNode) {
-	p := head.next
-	format := ""
-	for p != nil {
-		format += fmt.Sprint(p.GetData())
-		p = p.next
-		if p != nil {
-			format += "->"
-		}
+//反转打印链表, 使用头插法
+func ReverseLinked(head *LinkedNode) *LinkedNode {
+	var curr *LinkedNode //定义一个当前节点
+	for head != nil {
+		next := head.Next //1.下一个节点
+		head.Next = curr//3.头的下一个节点设置为当前节点
+		curr = head //4.当前节点设置为头节点
+		head = next //2.将头节点移动下一个节点
 	}
-	fmt.Println(format)
+	return curr
 }
+//递归反转链表
+func ReserveLinkedRecursion(head *SingleNode) *SingleNode {
+	if head == nil || head.next == nil {
+		return head
+	}
+	newHead := ReserveLinkedRecursion(head.next)
+	head.next.next = head
+	head.next = nil
+	return newHead
+
+}
+
 //反转链表,非递归方法
+//时间复杂度：O(n)O(n)，假设 nn 是列表的长度，时间复杂度是 O(n)O(n)。
+//空间复杂度：O(1)O(1)。
 func Reverse(head *SingleNode) *SingleNode {
 	if head == nil || head.next == nil{
 		return nil
@@ -34,3 +49,17 @@ func Reverse(head *SingleNode) *SingleNode {
 	return head
 }
 
+
+//打印链表
+func PrintLinked(head *SingleNode) {
+	p := head.next
+	format := ""
+	for p != nil {
+		format += fmt.Sprint(p.GetData())
+		p = p.next
+		if p != nil {
+			format += "->"
+		}
+	}
+	fmt.Println(format)
+}

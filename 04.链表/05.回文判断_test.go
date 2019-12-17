@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+//判断链表是否是回文
+func TestIsPalindromeByLinked(t *testing.T) {
+	l := NewSingleLinked()
+	l.InsertToHead("a")
+	l.InsertToHead("b")
+	l.InsertToHead("c")
+	l.InsertToHead("b")
+	l.InsertToHead("a")
+	l.Print()
+	src.Asset(1, t, true, IsPalindromeByLinked(l))
+}
+
 func TestCheckPalindrome(t *testing.T) {
 	src.Asset(1, t, true, CheckPalindrome("abccba"))
 	src.Asset(2, t, true, CheckPalindrome("aba"))

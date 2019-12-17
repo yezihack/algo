@@ -141,5 +141,4 @@ func (l *SingleLinked) Print() {
 }
 func (l *SingleLinked) Reserve(p *SingleNode) *SingleNode {
 	return nil
-
 }

@@ -11,7 +11,7 @@ func TestSingleLinked_InsertToHead(t *testing.T) {
 		l.InsertToHead(i+1)
 	}
 	l.Print()
-	Print(Reverse(l.head))
+	PrintLinked(Reverse(l.head))
 }
 func TestSingleLinked_InsertToTail(t *testing.T) {
 	l := NewSingleLinked()

@@ -11,7 +11,7 @@ abcba, aviva 都是回文字
 3.第三种也是使用二个指针,先从中间开始向左右扩散
 ********************/
 //使用栈判断,思路:将前一半入栈,后一半与栈里的元素比较
-func IsPalindrome1(l *SingleLinked) bool {
+func IsPalindromeByLinked(l *SingleLinked) bool {
 	size := l.length
 	if size == 0 {
 		return false

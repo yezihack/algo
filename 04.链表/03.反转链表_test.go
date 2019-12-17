@@ -5,13 +5,28 @@ import (
 	"testing"
 )
 
-func TestIsPalindrome1(t *testing.T) {
-	l := NewSingleLinked()
-	l.InsertToHead("a")
-	l.InsertToHead("b")
-	l.InsertToHead("c")
-	l.InsertToHead("b")
-	l.InsertToHead("a")
+
+
+func TestReverseLinked(t *testing.T) {
+	l := src.NewLinked()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
 	l.Print()
-	src.Asset(1, t, true, IsPalindrome1(l))
+	head := l.Head
+	result := ReverseLinked(head)
+	t.Log(l.Display(result))
+}
+
+func TestReserveLinkedRecursion(t *testing.T) {
+	l := NewSingleLinked()
+	l.InsertToTail("a")
+	l.InsertToTail("b")
+	l.InsertToTail("c")
+	l.InsertToTail("d")
+	l.InsertToTail("e")
+	l.Print()
+	head := l.head
+	result := ReserveLinkedRecursion(head)
+	PrintLinked(result)
 }
