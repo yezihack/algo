@@ -1,4 +1,4 @@
-package string_string
+package _4_蓝蝙蝠面试算法
 
 import (
 	"github.com/yezihack/algo/00.src"
