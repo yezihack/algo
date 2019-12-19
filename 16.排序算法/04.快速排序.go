@@ -39,11 +39,11 @@ func QuickSort(arr []int, left, right int) {
 	pivot := arr[left]//找个中心点
 	low, high := left, right //使用二个指针,一个在左,一个在右
 	for low < high {//不重合的状态下,循环
-		for low < high && arr[high] > pivot {//右边一直大于中心值,则向前移动high指针
+		for low < high && arr[high] >= pivot {//右边一直大于中心值,则向前移动high指针
 			high --
 		}
 		arr[low] = arr[high]//当小于中心点,则让数据交互到最低点
-		for low < high && arr[low] < pivot {//左边的一直小于中心值,则向前移动low指针
+		for low < high && arr[low] <= pivot {//左边的一直小于中心值,则向前移动low指针
 			low ++
 		}
 		arr[high] = arr[low]//当大于中心点,则让数据交互到最高点
