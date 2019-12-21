@@ -10,3 +10,8 @@ func TestQuickSort4(t *testing.T) {
 	QuickSort(arr, 0, len(arr)-1)
 	fmt.Println(arr)
 }
+func TestQuickSort5(t *testing.T) {
+	arr := []int{8, 2, 1, 2, 9, 7}
+	QuickSortSimple(arr, 0, len(arr)-1)
+	fmt.Println(arr)
+}

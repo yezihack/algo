@@ -172,6 +172,12 @@ func TestQuickSort(t *testing.T) {
 	}
 }
 
+func TestQuickSortSimple(t *testing.T) {
+	arr := []int{5, 2, 8, 7, 4, 3, 1, 6}
+	QuickSortSimple(arr, 0, len(arr)-1)
+	fmt.Println(arr)
+}
+
 //快速排序版本3
 func TestQuickSort3(t *testing.T) {
 	arr := []int{5, 2, 8, 7, 4, 3, 1, 6}

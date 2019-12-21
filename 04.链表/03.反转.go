@@ -49,6 +49,28 @@ func Reverse(head *SingleNode) *SingleNode {
 	return head
 }
 
+//反转链表
+func Inversion(head *LinkedNode) *LinkedNode {
+	var prev *LinkedNode
+	for head != nil {
+		next := head.Next
+		head.Next = prev
+		prev = head
+		head = next
+	}
+	return prev
+}
+//头插法
+func InversionByHead(head *LinkedNode) *LinkedNode {
+	var newHead *LinkedNode
+	for head != nil {
+		next := head.Next
+		head.Next = newHead
+		newHead = head
+		head = next
+	}
+	return newHead
+}
 
 //打印链表
 func PrintLinked(head *SingleNode) {

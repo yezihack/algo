@@ -2,6 +2,14 @@ package _6_排序算法
 
 import "fmt"
 
+/*
+快速排序:
+第一种实现: 分二个函数,一个是找中心轴函数,一个是递归函数
+第二种实现: 单个函数实现.
+第三种实现: 元素递归交换实现
+
+*/
+
 //快速排序
 func FastSort(arr []int, left, right int) {
 	if left < right {
@@ -52,10 +60,34 @@ func QuickSort(arr []int, left, right int) {
 	fmt.Printf("low:%d, high:%d, left:%d, right:%d, low-left:%d, right-low:%d, %v\n",
 						low, high, left, right, low-left, right-low, arr)
 	if low - left > 1 {
-		QuickSort(arr, left, low -1)
+		QuickSort(arr, left, low-1)
 	}
 	if right - low > 1 {
 		QuickSort(arr, low+1, right)
+	}
+}
+
+func QuickSortSimple(arr []int, left, right int) {
+	if left < right {
+		low, high := left, right
+		pivot := arr[left]
+		for low < high {
+			for low < high && arr[high] >= pivot {
+				high--
+			}
+			if low < high {
+				arr[low] = arr[high]
+			}
+			for low < high && arr[low] <= pivot {
+				low ++
+			}
+			if low < high {
+				arr[high] = arr[low]
+			}
+		}
+		arr[low] = pivot
+		QuickSortSimple(arr, left, low-1)
+		QuickSortSimple(arr, low+1, right)
 	}
 }
 

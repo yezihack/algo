@@ -30,3 +30,13 @@ func TestReserveLinkedRecursion(t *testing.T) {
 	result := ReserveLinkedRecursion(head)
 	PrintLinked(result)
 }
+func TestInversion(t *testing.T) {
+	l := src.NewLinked()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+	l.Print()
+	head := l.Head
+	result := Inversion(head)
+	t.Log(l.Display(result))
+}
