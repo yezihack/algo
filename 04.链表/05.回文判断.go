@@ -1,3 +1,12 @@
+/*
+ * @Author: 百里
+ * @Date: 2019-12-03 11:59:33
+ * @LastEditTime : 2019-12-28 17:22:24
+ * @LastEditors  : 百里
+ * @Description: 
+ * @FilePath: \yezihack\algo\04.链表\05.回文判断.go
+ * @https://github.com/yezihack
+ */
 package linked
 
 /*******************
