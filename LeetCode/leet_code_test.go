@@ -50,3 +50,13 @@ func TestTT(t *testing.T) {
 	fmt.Println(4, 4 & 1, 4 % 2)
 	fmt.Println(5, 5 & 1, 5 % 2)
 }
+
+func TestUniqueOccurrences(t *testing.T) {
+	src.Asset(1, t, true, UniqueOccurrences([]int{1, 2, 2, 1, 1, 3}))
+	src.Asset(2, t, false, UniqueOccurrences([]int{1, 2}))
+	src.Asset(3, t, true, UniqueOccurrences([]int{-3,0,1,-3,1,1,1,-3,10,0}))
+	src.Asset(4, t, false, UniqueOccurrences([]int{26,2,16,16,5,5,26,2,5,20,20,5,2,20,2,2,20,2,16,20,16,17,16,2,16,20,26,16}))
+}
+func TestUniqueOccurrences2(t *testing.T) {
+	src.Asset(4, t, false, UniqueOccurrences2([]int{26,2,16,16,5,5,26,2,5,20,20,5,2,20,2,2,20,2,16,20,16,17,16,2,16,20,26,16}))
+}
