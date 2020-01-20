@@ -125,4 +125,40 @@ func swap(arr []int, i, j int) {
 	arr[i], arr[j] = arr[j], arr[i]
 }
 
+func QuickSortOne(arr []int, left, right int) {
+	//右边的指针大于左边的指针则停止排序
+	if left >= right {
+		return
+	}
+	//再声明两个指针,进行将数组一分为二
+
+	i, j := left, right
+	//找一个基准值
+	pivot := arr[left]
+	//进行循环交换
+	flag := false
+	for i < j {
+		//先从右边开始, 为什么呢? 因为我们的基准值是左边的, 所有我们先从右边开始.
+		for i < j && arr[j] >= pivot {
+			j --
+		}
+		for i < j && arr[i] <= pivot {
+			i ++
+		}
+		if i < j {
+			flag = true //如果交换过数据,说明这个数组还不是有序.反之没有交换,说明这个数组有序.无需再进一步排序啦
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+
+	//完成以基准值一分为二的工作,需要将基准值放置在中间位置
+	arr[left], arr[i] = arr[i], pivot
+	fmt.Printf("%v, i:%d, j:%d, left:%d, i-1:%d, i+1:%d, right:%d\n", arr, i, j, left, i - 1, i + 1, right)
+	if !flag {
+		return
+	}
+	QuickSortOne(arr, left, i - 1)//处理左边数组
+	QuickSortOne(arr, i + 1, right) //处理右边数组
+}
+
 
