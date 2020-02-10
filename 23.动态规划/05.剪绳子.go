@@ -30,7 +30,7 @@ import "fmt"
 [0 1 2 3 4 6 9 12 18]
 */
 
-func MaxCut(size int) int  {
+func MaxCut(size int) int {
 	if size < 2 {
 		return 0
 	}
@@ -46,11 +46,11 @@ func MaxCut(size int) int  {
 	products[2] = 2
 	products[3] = 3
 	max := 0
-	for i := 4; i <= size; i ++ {
+	for i := 4; i <= size; i++ {
 		max = 0
-		for j := 1; j <= i / 2; j ++ {
-			fmt.Printf("%v, i:%d, j:%d, i-j:%d\n", products, i, j, i - j)
-			product := products[j] * products[i - j]
+		for j := 1; j <= i/2; j++ {
+			fmt.Printf("%v, i:%d, j:%d, i-j:%d\n", products, i, j, i-j)
+			product := products[j] * products[i-j]
 			if product > max {
 				max = product
 			}
@@ -60,4 +60,54 @@ func MaxCut(size int) int  {
 	fmt.Println(products)
 	max = products[size]
 	return max
+}
+
+func TaiXinCut(n int) int {
+	if n <= 2 {
+		return 1
+	}
+	if n == 3 {
+		return 2
+	}
+	ret := 1
+	//尽量剪去3倍的绳子.
+	for n > 3 {
+		ret *= 3
+		n -= 3
+	}
+	ret *= n
+	return ret
+}
+func DpCut(n int) int {
+	if n <= 1 {
+		return 1
+	}
+	//申请切片, 存储已经计算好的值.
+	dp := make([]int, n+1)
+	dp[0] = 0
+	dp[1] = 1
+	//从2开始计算.
+	for i := 2; i <= n; i++ {
+		max := 0
+		for j := 1; j < i; j++ {
+			a := j * (i - j)
+			b := j * dp[i-j]
+			fmt.Printf("i:%d, j:%d, max:%d, a:%d, dp:%d\n", i, j, max, a, b)
+			max = max3(max, a, b)
+		}
+		dp[i] = max
+	}
+	fmt.Println(dp)
+	return dp[n]
+}
+func max3(a, b, c int) int {
+	ret := a
+	if a < b {
+		ret = b
+	}
+	if ret > c {
+		return ret
+	} else {
+		return c
+	}
 }

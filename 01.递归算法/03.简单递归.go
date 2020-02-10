@@ -13,6 +13,7 @@ func Print(i, j int) {
 		print(mid+1, j)
 		fmt.Printf("b: i:%d, j:%d, mid:%d\n", i, j, mid)
 		debug.PrintStack()
+
 	}
 }
 

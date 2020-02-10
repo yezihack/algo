@@ -1,5 +1,10 @@
 package Recurive
 
+import (
+	"fmt"
+	"testing"
+)
+
 /*
 小青蛙跳台阶, 可以跳一个台阶, 也可以跳二个台阶.总共有多少种跳法.
 分析一下: 如果跳一个台阶, 还剩n-1个台阶没跳, 如果跳一次跳二个台阶, 还剩n-2个台阶没跳.
@@ -19,6 +24,23 @@ func Step(n int) int {
 	}
 	return Step(n - 1) + Step(n -  2)
 }
+
+func StepV2(n int) int {
+	if n < 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+	if n == 2 {
+		return 2
+	}
+	return StepV2(n - 1) + StepV2(n - 2)
+}
+func TestStepV2(t *testing.T) {
+	fmt.Println(StepV2(6))
+}
+
 var cache = make(map[int]int)
 func StepMap(n int) int {
 	if n == 1 {
@@ -50,4 +72,25 @@ func StepF(n int) int {
 		pre = ret
 	}
 	return ret
+}
+
+func StepNo(n int) int{
+	if n < 0{
+		return 0
+	}
+	if n < 3 {
+		return n
+	}
+	result := 0
+	prepre := 1
+	pre := 2
+	for i := 3; i < n;i ++ {
+		result = pre + prepre
+		prepre = pre
+		pre = result
+	}
+	return result
+}
+func TestStepNo(t *testing.T) {
+	fmt.Println(StepNo(6))
 }
