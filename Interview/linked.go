@@ -176,6 +176,7 @@ func HasCycleBySlowFastPoint(head *src.LinkedNode) bool {
 	return false
 }
 //链表交换相邻元素
+//https://www.jianshu.com/p/68e215a129bd
 func SwapPairs(head *src.LinkedNode) *src.LinkedNode {
 	if head == nil {
 		return nil

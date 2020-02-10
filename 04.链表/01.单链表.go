@@ -75,6 +75,7 @@ func (s *SingleLink) AddHead(v Object) {
 	s.len++ //长度相加
 }
 
+
 //1. 向尾部添加节点
 func (s *SingleLink) Append(v Object) {
 	//判断当前是否是空链表

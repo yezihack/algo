@@ -77,6 +77,7 @@ func IntegerBreakTop(n int) int {
 		return 1
 	}
 	dp := make([]int, n+1)
+
 	for i := 3; i <= n; i ++ {
 		for j := 1; j < i; j ++ {
 			a := dp[i]
