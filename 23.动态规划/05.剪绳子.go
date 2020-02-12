@@ -1,6 +1,9 @@
 package _3_动态规划
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 /*
 题目： 给你一根长度为n的绳子，请把绳子剪成m段 (m和n都是整数，n>1并且m>1)每段绳子的长度记为k[0],k[1],…,k[m].
@@ -97,6 +100,7 @@ func DpCut(n int) int {
 		}
 		dp[i] = max
 	}
+	strconv.Itoa()
 	fmt.Println(dp)
 	return dp[n]
 }

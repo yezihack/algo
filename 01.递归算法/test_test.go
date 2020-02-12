@@ -21,7 +21,7 @@ func TestQuickSort(t *testing.T) {
 
 func TestSum(t *testing.T) {
 	a := []int{1, 2, 3, 4, 5}
-	b := Sum(a)
+	b := SumV2(a)
 	fmt.Println(b)
 }
 func TestFact(t *testing.T) {
