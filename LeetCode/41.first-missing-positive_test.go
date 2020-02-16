@@ -54,18 +54,20 @@ func MissingByMap(nums []int) int {
 	for _, num := range nums {
 		set[num] = struct{}{}
 	}
-	//然后1~n遍历一次.查看一下map里是否有此值.如果没有则就是当前的I值.
+	fmt.Println(set)
+	//然后1~n遍历一次.查看一下map里是否有此值.如果没有则就是当前的i值.
 	for i := 1; i <= len(nums); i ++ {
 		if _, ok := set[i]; !ok {
 			return i
 		}
 	}
+	fmt.Println(nums)
 	return len(nums) + 1
 }
 
 func TestMissingByMap(t *testing.T) {
-	src.Asset(1, t, 3, MissingByMap([]int{1, 2, 0}))
-	src.Asset(2, t, 2, MissingByMap([]int{3,4,-1,1}))
+	//src.Asset(1, t, 3, MissingByMap([]int{1, 2, 0}))
+	//src.Asset(2, t, 2, MissingByMap([]int{3,4,-1,1}))
 	src.Asset(3, t, 1, MissingByMap([]int{7,8,9,11,12}))
 }
 

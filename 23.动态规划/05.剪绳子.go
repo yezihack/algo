@@ -2,7 +2,6 @@ package _3_动态规划
 
 import (
 	"fmt"
-	"strconv"
 )
 
 /*
@@ -100,7 +99,6 @@ func DpCut(n int) int {
 		}
 		dp[i] = max
 	}
-	strconv.Itoa()
 	fmt.Println(dp)
 	return dp[n]
 }

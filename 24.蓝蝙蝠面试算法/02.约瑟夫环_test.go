@@ -16,15 +16,17 @@ func JosCycle(n, m int) int {
 	if n == 0 || m == 0 {
 		return 0
 	}
+	//定义一个数组,模拟环
 	cycle := make([]int, n)
+	//初使环, 未踢出的人标记为1, 踢出的标记为0
 	for i := 0; i < n; i ++ {
 		cycle[i] = 1
 	}
 	var (
-		count = 0
-		number = 0
+		count = 0 //定义一个用于踢出人的数量
+		number = 0//定义一个报数的变量.
 	)
-	for count < n -1 {
+	for count < n -1 { //如果踢出的人
 		for i := 0; i < n; i ++ {
 			if cycle[i] == 1 {
 				number ++

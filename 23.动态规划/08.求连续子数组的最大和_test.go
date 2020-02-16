@@ -35,19 +35,52 @@ func TestSearchSum(t *testing.T) {
 func SearchSumV2(arr []int) int {
 	sum := 0 //每次累加的变量值
 	max := 0 //最终求得的最大值.
+	findMax := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
 	for i := 0; i < len(arr); i ++{
-		sum += arr[i] //累加值
+		sum = findMax(sum+arr[i], arr[i])
 		if sum > max {//每计算一步就比较之前的max值.
 			max = sum
-		}
-		//如果sum小于0则重新计算
-		if sum <= 0 {
-			sum = 0
 		}
 	}
 	return max
 }
 
-func TestCalcJoinMax(t *testing.T) {
-	fmt.Println(SearchSumV2([]int{3, -1, 5, -8, 3, 3}))
+func TestSearchSumV2(t *testing.T) {
+	fmt.Println(SearchSumV2([]int{-1, -2, 100,8, -10}))
+	fmt.Println(SearchSumV2([]int{1, -2, 3, 10, -4, 7, 2, -5 }))
 }
+
+func SearchSumV3(arr []int) int {
+	if len(arr) == 0 {
+		return 0
+	}
+	//定义一个DP数组
+	dp := make([]int, len(arr))
+	sum := 0 //求和
+	for i := 0; i < len(arr); i ++ {
+		sum += arr[i]
+		if sum > arr[i] {
+			dp[i] = sum
+		} else {
+			dp[i] = arr[i]
+		}
+	}
+	fmt.Println(dp)
+	max := 0
+	for i := 0; i < len(dp); i ++ {
+		if dp[i] > max {
+			max = dp[i]
+		}
+	}
+	return max
+}
+func TestSearchSumV3(t *testing.T) {
+	fmt.Println(SearchSumV3([]int{3, -1, 5, -8, 3, 3}))
+	fmt.Println(SearchSumV3([]int{1, -2, 3, 10, -4, 7, 2, -5 }))
+}
+

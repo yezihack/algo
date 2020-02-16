@@ -5,6 +5,10 @@
 > 算法本质是使程序片段执行得到一种最优最快的方法,
 从而实现计算量最少最优,CPU占用最低,响应最快的结果.
 
+## 实战算法
+> 提供golang,php,c语言及多种解法实现.详细每一个步骤 
+1. [https://github.com/yezihack/leetcode](https://github.com/yezihack/leetcode)
+
 ## 图解算法
 [https://visualgo.net/](https://visualgo.net/)
 
