@@ -86,6 +86,7 @@ func ContinueChildArraySumDpV2(arr []int) int {
 	var total, sum = 0, 0 //定义一个total为最优解, sum为当前连续最优解的变量.
 	for i := 0; i < len(arr); i ++ {
 		sum += arr[i] //求连续最优解之和
+		fmt.Printf("cur:%d, sum:%d, total:%d\n", arr[i], sum, total)
 		if arr[i] > sum { //如果当前值大于最优解则交换
 			sum = arr[i] //交换
 		}
@@ -97,6 +98,10 @@ func ContinueChildArraySumDpV2(arr []int) int {
 }
 
 func TestContinueChildArraySumDpV2(t *testing.T) {
+	if ret := ContinueChildArraySumDpV2([]int{1, -2, 3, 1}); ret != 4 {
+		t.Errorf("actual:%d, expect:%d\n", ret, 4)
+	}
+	return
 	if ret := ContinueChildArraySumDpV2([]int{1, -5, 2, -4, 2, 3}); ret != 5 {
 		t.Errorf("actual:%d, expect:%d\n", ret, 5)
 	}
